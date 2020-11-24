@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void onLogout() {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
