@@ -15,7 +15,7 @@ public class Bike {
     @ColumnInfo( name ="type")
     public String  type;
     @ColumnInfo( name ="image")
-    public String image;
+    public int image;
 
 
     @Ignore
@@ -23,15 +23,19 @@ public class Bike {
 
     }
 
+    public Bike( String model, int image) {
+        this.model = model;
+        this.image = image;
+    }
 
-    public Bike( String model, String type, String image) {
+    public Bike( String model, String type, int image) {
         this.model = model;
         this.type = type;
         this.image = image;
     }
 
     @Ignore
-    public Bike(int id, String model, String type, String image) {
+    public Bike(int id, String model, String type,  int image) {
         this.id = id;
         this.model = model;
         this.type = type;
@@ -54,7 +58,7 @@ public class Bike {
         this.type = type;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
@@ -66,7 +70,7 @@ public class Bike {
         return type;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 

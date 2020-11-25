@@ -42,11 +42,11 @@ public class MyMapFragment extends SupportMapFragment implements OnMapReadyCallb
         this.googleMap.addMarker(new MarkerOptions().position(community3).icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).title("Bike Community 3"));
 
-        this.googleMap.addMarker(new MarkerOptions().position(community2).icon(BitmapDescriptorFactory
+        this.googleMap.addMarker(new MarkerOptions().position(cyclist1).icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title("Bike Cyclist 1"));
-        this.googleMap.addMarker(new MarkerOptions().position(community3).icon(BitmapDescriptorFactory
+        this.googleMap.addMarker(new MarkerOptions().position(cyclist2).icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title("Bike Cyclist 2"));
-        this.googleMap.addMarker(new MarkerOptions().position(community3).icon(BitmapDescriptorFactory
+        this.googleMap.addMarker(new MarkerOptions().position(cyclist3).icon(BitmapDescriptorFactory
                 .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)).title("Bike Cyclist 3"));
 
 

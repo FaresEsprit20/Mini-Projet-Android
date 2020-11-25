@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
     public static final String TAG_NUMBER = "NUMBER";
     Button LogoutClient;
-    Button FindClient, LouerClient, TrackClient;
+    Button FindClient, LouerClient, TrackClient, Contact;
     private SharedPreferences sp;
 
     //, edSignUpFirstName, edSignUpLastName, edSignUpEmail, edSignUpPassword, edSignUpPhoneNumber;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         FindClient = findViewById(R.id.btnFindClient);
         TrackClient = findViewById(R.id.btnTrackClient);
         LouerClient = findViewById(R.id.btnLouerClient);
+        Contact = findViewById(R.id.btnContactClient);
         txtFirstName = findViewById(R.id.txtMainFirstName);
         txtLastName = findViewById(R.id.txtMainLastName);
         txtEmail = findViewById(R.id.txtMainEmail);
@@ -62,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onLouer();
+            }
+        });
+
+        Contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onContact();
             }
         });
 
@@ -98,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void onContact() {
+        Intent intent = new Intent(this, ContactActivity.class);
+        startActivity(intent);
+    }
 
     public void onLogout() {
         Intent intent = new Intent(this, SignInActivity.class);

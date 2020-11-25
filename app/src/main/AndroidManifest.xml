@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.ContactActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDZS-O_JwLI8pkMp9zNkXJ69O0HMkhMDe8"/>
+            android:value="AIzaSyDZS-O_JwLI8pkMp9zNkXJ69O0HMkhMDe8" />
 
         <activity android:name=".ui.activities.UpdateProfile" />
         <activity android:name=".ui.activities.AddBike" />

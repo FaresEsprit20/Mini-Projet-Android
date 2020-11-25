@@ -86,7 +86,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.721">
 
-
         <Button
             android:id="@+id/btnLouerClient"
             android:layout_width="wrap_content"
@@ -115,6 +114,15 @@
             android:textColor="@color/colorWhite" />
 
         <Button
+            android:id="@+id/btnContactClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Contact"
+            android:textColor="@color/colorWhite" />
+
+        <Button
             android:id="@+id/btnlogoutClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,8 +131,8 @@
             android:text="Logout"
             android:textColor="@color/colorWhite" />
 
-
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

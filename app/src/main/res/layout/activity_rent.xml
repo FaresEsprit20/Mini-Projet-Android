@@ -6,15 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.RentActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:text="RENT"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="openFragOne"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorTextWhite"
+            android:text="Bikes" />
+
+        <RelativeLayout
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="openFragTwo"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorTextWhite"
+            android:text="Rents" />
+
+        <RelativeLayout
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="openFragThree"
+            android:background="@color/colorPrimary"
+            android:text="Favourites"
+            android:textColor="@color/colorTextWhite" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttons" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

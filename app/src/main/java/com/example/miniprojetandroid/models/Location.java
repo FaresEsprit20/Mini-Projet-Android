@@ -34,6 +34,15 @@ public class Location {
     }
 
     @Ignore
+    public Location( String dateLocation, String addressLocation, Bike bike) {
+        this.dateLocation = dateLocation;
+        this.addressLocation = addressLocation;
+        this.bike = bike;
+    }
+
+
+
+    @Ignore
     public Location(int id, String dateLocation, String addressLocation, Bike bike, User user) {
         this.id = id;
         this.dateLocation = dateLocation;
