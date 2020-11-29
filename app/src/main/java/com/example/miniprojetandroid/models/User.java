@@ -1,46 +1,52 @@
 package com.example.miniprojetandroid.models;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "users")
 public class User {
 
- @PrimaryKey(autoGenerate = true)
- public int id;
- @ColumnInfo( name ="name")
- public String name;
- @ColumnInfo( name ="lastName")
- public String lastName;
- @ColumnInfo( name ="role")
- public String role;
- @ColumnInfo( name ="password")
- public String password;
- @ColumnInfo( name ="email")
- public String email;
- @ColumnInfo( name ="phone")
- public String phone;
-    @Ignore
- public User(){
+    @SerializedName("user_id")
+    @Expose
+    private int id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("lastname")
+    @Expose
+    private String lastname;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
+
+    public User(){
  }
+
+
+    public User(String email,  String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public User( String name, String lastName, String password,  String email, String phone) {
         this.name = name;
-        this.lastName = lastName;
-        this.role = "client";
+        this.lastname = lastName;
         this.password = password;
         this.email = email;
         this.phone = phone;
     }
 
-    @Ignore
+
     public User(int id, String name, String lastName, String password,  String email, String phone) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
-        this.role= "client";
+        this.lastname = lastName;
         this.password = password;
         this.email = email;
         this.phone = phone;
@@ -61,20 +67,13 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getName() {
         return name;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
     public String getEmail() {
@@ -90,7 +89,7 @@ public class User {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
     public void setEmail(String email) {
@@ -102,13 +101,12 @@ public class User {
     }
 
 
-    @Override
+
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", role='" + role + '\'' +
+                ", lastName='" + lastname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +

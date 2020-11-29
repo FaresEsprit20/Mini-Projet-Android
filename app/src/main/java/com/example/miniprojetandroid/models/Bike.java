@@ -1,26 +1,29 @@
 package com.example.miniprojetandroid.models;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "bikes")
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Bike {
 
-    @PrimaryKey(autoGenerate = true)
+    @SerializedName("bike_id")
+    @Expose
     public int id;
-    @ColumnInfo( name ="model")
+    @SerializedName("model")
+    @Expose
     public String model;
-    @ColumnInfo( name ="type")
+    @SerializedName("type")
+    @Expose
     public String  type;
-    @ColumnInfo( name ="image")
+    @SerializedName("price")
+    @Expose
+    public String price;
+
     public int image;
 
 
-    @Ignore
-    public Bike(){
 
+    public Bike(){
     }
 
     public Bike( String model, int image) {
@@ -28,18 +31,34 @@ public class Bike {
         this.image = image;
     }
 
-    public Bike( String model, String type, int image) {
+    public Bike( String model, String type, String price, int image) {
         this.model = model;
         this.type = type;
+        this.price = price;
         this.image = image;
     }
 
-    @Ignore
-    public Bike(int id, String model, String type,  int image) {
+    public Bike(int id, String model, String price, String type) {
+        this.id = id;
+        this.model = model;
+        this.price = price;
+        this.type = type;
+    }
+
+    public Bike(int id, String model, String type, String price,  int image) {
         this.id = id;
         this.model = model;
         this.type = type;
+        this.price = price;
         this.image = image;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getId() {
@@ -80,10 +99,8 @@ public class Bike {
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", type='" + type + '\'' +
-                ", image='" + image + '\'' +
+                ", price='" + price + '\'' +
+                ", image=" + image +
                 '}';
     }
-
-
-
 }

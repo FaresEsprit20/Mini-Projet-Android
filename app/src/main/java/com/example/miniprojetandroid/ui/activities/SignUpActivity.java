@@ -1,6 +1,5 @@
 package com.example.miniprojetandroid.ui.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,28 +9,92 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.miniprojetandroid.R;
-import com.example.miniprojetandroid.database.AppDatabase;
+import com.example.miniprojetandroid.Retrofit.RetrofitClient;
+import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.models.User;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
+
+    private UserService apiService;
     private EditText edSignUpFirstName, edSignUpLastName, edSignUpEmail, edSignUpPassword, edSignUpPhoneNumber;
-    private AppDatabase database;
+    List<User> users = new ArrayList<User>();
+    List<User> result = new ArrayList<User>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        apiService = RetrofitClient.getClient().create(UserService.class);
+
         edSignUpFirstName = findViewById(R.id.edSignUpFirstName);
         edSignUpLastName = findViewById(R.id.edSignUpLastName);
         edSignUpEmail = findViewById(R.id.edSignUpEmail);
         edSignUpPassword = findViewById(R.id.edSignUpPassword);
         edSignUpPhoneNumber = findViewById(R.id.edSignUpPhoneNumber);
-        database = AppDatabase.getAppDatabase(this);
+
+        getUsersList();
 
 
     }
+
+
+    public void getUsersList(){
+       /* Call<List<User>> call = apiService.getUsers();
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if(response.isSuccessful()){
+                  result  = response.body();
+
+                    for(User user: result){
+                        User u = new User();
+                        u.setId(user.getId());
+                        u.setName(user.getName());
+                        u.setLastName(user.getLastName());
+                        u.setEmail(user.getEmail());
+                        u.setPassword(user.getPassword());
+                        u.setPhone(user.getPhone());
+                        users.add(u);
+                    }
+
+                    Log.e("USERS LIST", users.toString());
+
+                    //listView.setAdapter(new UserAdapter(MainActivity.this, R.layout.list_user, list));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
+            }
+        });*/
+
+
+
+    }
+
+
+
+
+
+
+
 
     public void doSignUp(View view) {
 
@@ -42,9 +105,31 @@ public class SignUpActivity extends AppCompatActivity {
             u.setEmail(edSignUpEmail.getText().toString());
             u.setPassword(edSignUpPassword.getText().toString());
             u.setPhone(edSignUpPhoneNumber.getText().toString());
-            database.userDao().insertOne(u);
-            Toast.makeText(this, "Sign Up Successful !", Toast.LENGTH_SHORT).show();
-            finish();
+            apiService.createUser(u).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    String message = null;
+                    try {
+                        message = response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    int status = response.code();
+                    if(message.contains("EXIST")) {
+                        Log.e("aaaaaaaaaaaaa", "response : " + message);
+                        Toast.makeText(SignUpActivity.this, "USER ALREADT EXIST !", Toast.LENGTH_SHORT).show();
+                    }else if ( message.contains("OK") ){
+                        Log.e("aaaaaaaaaaaaa", "response : " + message);
+                        Toast.makeText(SignUpActivity.this, "SIGN UP SUCCESSFUL !", Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+
+
         }
     }
 
@@ -64,18 +149,6 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "Email is not valid !", Toast.LENGTH_SHORT).show();
             return false;
         }
-
-        //TODO 2 Check user existance in database
-
-        User tmpUser = AppDatabase.getAppDatabase(getApplicationContext()).userDao().findByEmail(edSignUpEmail.getText().toString());
-         Log.d("User", String.valueOf(tmpUser.toString()));
-
-
-        if (tmpUser != null){
-            Toast.makeText(this, "User exist in database !", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
 
         return true;
     }

@@ -1,50 +1,46 @@
 package com.example.miniprojetandroid.models;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-@Entity(tableName = "locations")
+
 public class Location {
 
-    @PrimaryKey(autoGenerate = true)
    public int id;
-    @ColumnInfo( name ="dateLocation")
+
     public String dateLocation;
-    @ColumnInfo( name ="adressLocation")
+
     public String addressLocation;
-    @ColumnInfo( name ="bike")
+
     public Bike bike;
-    @ColumnInfo( name ="user")
+
     public User user;
 
-    @Ignore
     public Location(){
 
     }
 
-    public Location( String dateLocation, String addressLocation, Bike bike, User user) {
-        this.dateLocation = dateLocation;
+    public Location(String addressLocation, Bike bike, User user) {
+        Date currentTime = Calendar.getInstance().getTime();
+        this.dateLocation = currentTime.toString();
         this.addressLocation = addressLocation;
         this.bike = bike;
         this.user = user;
     }
 
-    @Ignore
-    public Location( String dateLocation, String addressLocation, Bike bike) {
-        this.dateLocation = dateLocation;
+
+    public Location(  String addressLocation, Bike bike) {
+        Date currentTime = Calendar.getInstance().getTime();
+        this.dateLocation = currentTime.toString();
         this.addressLocation = addressLocation;
         this.bike = bike;
     }
 
 
 
-    @Ignore
-    public Location(int id, String dateLocation, String addressLocation, Bike bike, User user) {
-        this.id = id;
+    public Location( String dateLocation, String addressLocation, Bike bike, User user) {
         this.dateLocation = dateLocation;
         this.addressLocation = addressLocation;
         this.bike = bike;

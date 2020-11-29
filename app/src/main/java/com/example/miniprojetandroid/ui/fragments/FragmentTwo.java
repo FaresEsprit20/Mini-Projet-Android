@@ -52,10 +52,10 @@ public class FragmentTwo extends Fragment {
     }
 
     public void fillData(){
-      Bike b1 = new Bike(1,"ECO", "RTT" , R.drawable.ruebike );
-       Bike b2 = new Bike(2,"AAA", "Sport" , R.drawable.ruebike );
-        locations.add(new Location("25/11/2020","Marsa", b1));
-        locations.add(new Location("24/11/2020","Bizerte", b2));
+      Bike b1 = new Bike(1,"ECO", "RTT" , "55", R.drawable.ruebike );
+       Bike b2 = new Bike(2,"AAA", "Sport" , "66",  R.drawable.ruebike );
+        locations.add(new Location("25/11/2020", b1));
+        locations.add(new Location("24/11/2020", b2));
 
     }
 
