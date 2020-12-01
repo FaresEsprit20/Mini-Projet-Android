@@ -12,10 +12,8 @@ import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.models.User;
-
 import java.util.Calendar;
 import java.util.Date;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -112,9 +110,7 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
 
-
                         }else {
-
                             Log.e("aaaaaaaaaaaaa", "response : " + message);
                             Toast.makeText(SignInActivity.this, "WRONG EMAIL OR PASSWORD !", Toast.LENGTH_SHORT).show();
                         }
@@ -142,10 +138,8 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "Email is not valid !", Toast.LENGTH_SHORT).show();
             return false;
         }
-
         return true;
     }
-
 
 
 }
