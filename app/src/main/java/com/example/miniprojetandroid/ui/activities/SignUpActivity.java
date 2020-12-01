@@ -5,19 +5,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.models.User;
 import com.google.gson.JsonArray;
-
 import org.json.JSONArray;
-
 import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,9 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                         u.setPhone(user.getPhone());
                         users.add(u);
                     }
-
                     Log.e("USERS LIST", users.toString());
-
                     //listView.setAdapter(new UserAdapter(MainActivity.this, R.layout.list_user, list));
                 }
             }

@@ -24,16 +24,23 @@
 
             <TextView
                 android:id="@+id/bikeName"
-                android:layout_width="match_parent"
+                android:layout_width="266dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
+        <Button
+            android:id="@+id/btn_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_baseline_view_24"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="2dp"

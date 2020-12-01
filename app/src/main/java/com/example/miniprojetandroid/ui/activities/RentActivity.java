@@ -40,15 +40,8 @@ public class RentActivity extends AppCompatActivity {
     }
 
     public void openFragThree(View view) {
-
         showFragment(new FragmentThree());
     }
 
-
-
-
-
-
-
-
+    
 }

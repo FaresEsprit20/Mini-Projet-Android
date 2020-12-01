@@ -1,5 +1,8 @@
 package com.example.miniprojetandroid.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,26 +11,42 @@ import java.util.Date;
 
 public class Location {
 
+    @SerializedName("location_id")
+    @Expose
    public int id;
-
+    @SerializedName("datelocation")
+    @Expose
     public String dateLocation;
-
+    @SerializedName("adresselocation")
+    @Expose
     public String addressLocation;
-
+    @SerializedName("bike")
+    @Expose
     public Bike bike;
-
+    @SerializedName("user_id")
+    @Expose
     public User user;
 
     public Location(){
 
     }
 
-    public Location(String addressLocation, Bike bike, User user) {
+    public Location(int id, String addressLocation, Bike bike, User user) {
+        this.id = id;
         Date currentTime = Calendar.getInstance().getTime();
         this.dateLocation = currentTime.toString();
         this.addressLocation = addressLocation;
         this.bike = bike;
         this.user = user;
+    }
+
+    
+    public Location(int id, String addressLocation, Bike bike) {
+        this.id = id;
+        Date currentTime = Calendar.getInstance().getTime();
+        this.dateLocation = currentTime.toString();
+        this.addressLocation = addressLocation;
+        this.bike = bike;
     }
 
 
@@ -38,14 +57,6 @@ public class Location {
         this.bike = bike;
     }
 
-
-
-    public Location( String dateLocation, String addressLocation, Bike bike, User user) {
-        this.dateLocation = dateLocation;
-        this.addressLocation = addressLocation;
-        this.bike = bike;
-        this.user = user;
-    }
 
     public int getId() {
         return id;

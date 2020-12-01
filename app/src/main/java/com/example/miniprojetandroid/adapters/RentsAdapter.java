@@ -37,7 +37,7 @@ public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHo
     public void onBindViewHolder(@NonNull RentsAdapter.RentsViewHolder holder, int position) {
         final Location singleItem = rents.get(position);
 
-        holder.RentName.setText(singleItem.getDateLocation());
+        holder.RentId.setText(String.valueOf(singleItem.getId()));
 
         holder.RentImage.setBackgroundResource(singleItem.getBike().getImage());
 
@@ -50,13 +50,13 @@ public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHo
 
     public class RentsViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView RentName;
+        public final TextView RentId;
         public final ImageView RentImage;
         final RentsAdapter mAdapter;
 
         public RentsViewHolder(@NonNull View itemView, RentsAdapter mAdapter) {
             super(itemView);
-            this.RentName = itemView.findViewById(R.id.rentName);
+            this.RentId = itemView.findViewById(R.id.rentId);
             this.RentImage = itemView.findViewById(R.id.rentImage);
             this.mAdapter = mAdapter;
         }

@@ -88,13 +88,14 @@ public class FragmentOne extends Fragment {
         });
 
 
-
-
         /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
-        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
-        bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
-        bikes.add(new Bike(4,"EEE", "SPORT" , "25",  R.drawable.ruebike ));
+        bikes.add(new Bike(2,"AAA", "RTT" , "33",   R.drawable.ruebike ));
+        bikes.add(new Bike(3,"BBB", "RUE" , "11",   R.drawable.ruebike ));
+        bikes.add(new Bike(4,"EEE", "SPORT" , "25", R.drawable.ruebike ));
         bikes.add(new Bike(5,"CCC", "SPORT" , "77", R.drawable.ruebike ));
         Log.e("USERS LIST", bikes.toString());*/
+
+
+
     }
 }
