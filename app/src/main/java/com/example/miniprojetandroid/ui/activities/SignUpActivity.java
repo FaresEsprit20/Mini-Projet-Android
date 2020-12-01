@@ -28,12 +28,10 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
-
     private UserService apiService;
-    private EditText edSignUpFirstName, edSignUpLastName, edSignUpEmail, edSignUpPassword, edSignUpPhoneNumber;
+    private EditText edSignUpFirstName, edSignUpLastName, edSignUpEmail, edSignUpPassword, edSignUpPhoneNumber, edSignUpPasswordRepeat;
     List<User> users = new ArrayList<User>();
     List<User> result = new ArrayList<User>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +39,13 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         apiService = RetrofitClient.getClient().create(UserService.class);
-
         edSignUpFirstName = findViewById(R.id.edSignUpFirstName);
         edSignUpLastName = findViewById(R.id.edSignUpLastName);
         edSignUpEmail = findViewById(R.id.edSignUpEmail);
         edSignUpPassword = findViewById(R.id.edSignUpPassword);
+        edSignUpPasswordRepeat = findViewById(R.id.edSignUpPasswordRepeat);
         edSignUpPhoneNumber = findViewById(R.id.edSignUpPhoneNumber);
-
         getUsersList();
-
 
     }
 
@@ -85,19 +81,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });*/
 
-
-
     }
 
 
 
-
-
-
-
-
     public void doSignUp(View view) {
-
         if (validator()) {
             User u = new User();
             u.setName(edSignUpFirstName.getText().toString());
@@ -128,8 +116,6 @@ public class SignUpActivity extends AppCompatActivity {
                     t.printStackTrace();
                 }
             });
-
-
         }
     }
 
@@ -150,6 +136,23 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
 
+        if (!edSignUpPassword.getText().toString().equals(edSignUpPasswordRepeat.getText().toString())   ) {
+            Toast.makeText(this, "Password mismatch !", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if ( edSignUpPassword.getText().toString().length() < 6 || edSignUpPassword.getText().toString().length() >= 30  ) {
+            Toast.makeText(this, "Password must be between 6 and  30 characters !", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (  edSignUpPhoneNumber.getText().toString().length() != 8  ) {
+            Toast.makeText(this, "Phone must be 8 characters !", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 }
+
+
+

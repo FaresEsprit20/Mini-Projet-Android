@@ -18,9 +18,9 @@ import retrofit2.http.Query;
 
 public interface UserService {
 
+
     @POST("register/")
     Call<ResponseBody> createUser(@Body User user);
-
 
     @POST("login/")
     Call<User> loginUser(@Body User user);
@@ -32,7 +32,12 @@ public interface UserService {
     @GET("users")
     Call<List<User>> getUsers();
 
-
+    // update user
+    @PUT("user/update")
+    Call<ResponseBody> updateUser(
+            @Body User user
+    );
 
 
 }
+

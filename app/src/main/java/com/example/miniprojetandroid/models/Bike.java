@@ -22,9 +22,9 @@ public class Bike {
     public int image;
 
 
-
     public Bike(){
     }
+
 
     public Bike( String model, int image) {
         this.model = model;
@@ -103,4 +103,6 @@ public class Bike {
                 ", image=" + image +
                 '}';
     }
+
+
 }

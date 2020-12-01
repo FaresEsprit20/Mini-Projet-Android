@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.UpdateProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.UpdateProfile">
+    >
+
+
 
     <LinearLayout
         android:id="@+id/lnr1"
@@ -35,7 +37,26 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:inputType="textEmailAddress"
+            android:editable="false"
+            android:focusable="false"
+            android:cursorVisible="false"
             android:hint="@string/hint_email"/>
+
+        <EditText
+            android:id="@+id/txtpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+
+        <EditText
+            android:id="@+id/txtpasswordRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:inputType="textPassword"
+            android:hint="txtpasswordRepeat"/>
 
         <EditText
             android:id="@+id/ed_phone_number"
@@ -45,16 +66,18 @@
             android:inputType="phone"
             android:hint="@string/hint_phone_number"/>
 
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lnr1"
+            android:layout_margin="20dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/save"
+            android:textColor="@color/colorWhite" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lnr1"
-        android:layout_margin="20dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/save"
-        android:textColor="@color/colorWhite" />
 
-</RelativeLayout>
+
+</ScrollView>

@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.models.User;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button FindClient, LouerClient, TrackClient, Contact;
     private SharedPreferences sp;
 
+    public static User currentUser;
     //, edSignUpFirstName, edSignUpLastName, edSignUpEmail, edSignUpPassword, edSignUpPhoneNumber;
     private TextView txtFirstName, txtLastName,txtEmail,txtPhoneNumber;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         LogoutClient = findViewById(R.id.btnlogoutClient);
         FindClient = findViewById(R.id.btnFindClient);
         TrackClient = findViewById(R.id.btnTrackClient);
@@ -39,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
         checkAndFillData(getIntent());
 
         sp = getSharedPreferences("com.example.miniprojetandroid.shared", MODE_PRIVATE);
-
-
-
-
-
 
         FindClient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,11 +90,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToUpdateProfile(View view) {
+
+
         Intent intent = new Intent(this, UpdateProfile.class);
         intent.putExtra(SignInActivity.FNAME_KEY, txtFirstName.getText().toString());
         intent.putExtra(SignInActivity.LNAME_KEY, txtLastName.getText().toString());
         intent.putExtra(SignInActivity.EMAIL_KEY, txtEmail.getText().toString());
         intent.putExtra(SignInActivity.PHONE_KEY, txtPhoneNumber.getText().toString());
+        intent.putExtra(SignInActivity.PASSWORD_KEY, sp.getString("PASSWORD",""));
         startActivityForResult(intent, REQUEST_CODE);
     }
 
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContactActivity.class);
         startActivity(intent);
     }
+
 
     public void onLogout() {
         Intent intent = new Intent(this, SignInActivity.class);
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 }

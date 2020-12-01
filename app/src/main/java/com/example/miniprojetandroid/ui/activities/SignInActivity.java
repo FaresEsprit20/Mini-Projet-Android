@@ -12,13 +12,10 @@ import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.models.User;
-import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +29,9 @@ public class SignInActivity extends AppCompatActivity {
     public static final String EMAIL_KEY = "EMAIL";
     public static final String PWD_KEY = "PASSWORD";
     public static final String PHONE_KEY = "PHONE";
+    public static final String PASSWORD_KEY = "PASSWORD";
     public static final String CHECKED_KEY = "CHECKED";
+
 
         public static final String sharedPrefFile = "com.example.miniprojetandroid.shared";
         private SharedPreferences mPreferences;
@@ -45,15 +44,14 @@ public class SignInActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_sign_in);
+
             Date currentTime = Calendar.getInstance().getTime();
             Log.e("date",currentTime.toString());
             apiService = RetrofitClient.getClient().create(UserService.class);
-
             intent = new Intent(this, MainActivity.class);
             email = (EditText) findViewById(R.id.edSignInEmail);
             password = (findViewById(R.id.edSignInPassword));
             cbRememberMe = findViewById(R.id.cbRememberMe);
-
             //TODO 1 get SharedPref And set EditText
             mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
             email.setText( mPreferences.getString(EMAIL_KEY,"") );
@@ -65,8 +63,6 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
         }
-
-
 
         public void SignIn(View view) {
 
@@ -98,17 +94,27 @@ public class SignInActivity extends AppCompatActivity {
                              String rep = response.body().toString();
                             if(message.getEmail().equals(email.getText().toString())) {
                             currentUser = response.body();
+
+                                SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                                preferencesEditor.putString("ID", String.valueOf(currentUser.getId()));
+                                preferencesEditor.putString(EMAIL_KEY, currentUser.getEmail());
+                                preferencesEditor.putString(PWD_KEY, currentUser.getPassword());
+                                preferencesEditor.apply();
+
                             Log.e("aaaaaaaaaaaaa", "response : " + message);
                             Toast.makeText(SignInActivity.this, "SIGN In SUCCESSFUL !", Toast.LENGTH_LONG).show();
                             intent.putExtra(FNAME_KEY, currentUser.getName());
                             intent.putExtra(LNAME_KEY, currentUser.getLastName());
                             intent.putExtra(EMAIL_KEY, currentUser.getEmail());
                             intent.putExtra(PHONE_KEY, currentUser.getPhone());
+                            intent.putExtra(PASSWORD_KEY, currentUser.getPassword());
                             Log.d("User", String.valueOf(currentUser.toString()));
                             startActivity(intent);
                             finish();
 
-                        }else if(message == null || rep.length() <= 2  ){
+
+                        }else {
+
                             Log.e("aaaaaaaaaaaaa", "response : " + message);
                             Toast.makeText(SignInActivity.this, "WRONG EMAIL OR PASSWORD !", Toast.LENGTH_SHORT).show();
                         }
@@ -121,15 +127,12 @@ public class SignInActivity extends AppCompatActivity {
             }
          }
 
-
         public void SignInFB(View view) {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
         }
 
-
     public boolean validator(){
-
         if (email.getText().toString().length() == 0
                 || password.getText().toString().length() == 0 ){
             Toast.makeText(this, "Email and password must not be empty !", Toast.LENGTH_SHORT).show();

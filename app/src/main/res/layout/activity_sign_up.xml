@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.SignUpActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.SignUpActivity">
+    >
 
+    <!-- ScrollViews can only have 1 child View, so the 1st LinearLayout below
+         will be the "container" -->
 
     <LinearLayout
         android:id="@+id/lnr2"
@@ -50,6 +52,15 @@
             android:textColor="@color/colorPrimary" />
 
         <EditText
+            android:id="@+id/edSignUpPasswordRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="Repeat Password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
             android:id="@+id/edSignUpPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,4 +87,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
