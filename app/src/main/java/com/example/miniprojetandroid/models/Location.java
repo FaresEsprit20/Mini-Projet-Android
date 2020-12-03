@@ -20,12 +20,17 @@ public class Location {
     @SerializedName("adresselocation")
     @Expose
     public String addressLocation;
+    @SerializedName("hours")
+    @Expose
+    public String hours;
     @SerializedName("bike")
     @Expose
     public Bike bike;
     @SerializedName("user_id")
     @Expose
     public User user;
+     public int user_id;
+     public int bike_id;
 
     public Location(){
 
@@ -50,11 +55,23 @@ public class Location {
     }
 
 
-    public Location(  String addressLocation, Bike bike) {
+    public Location(  String addressLocation, String hours , Bike bike, User user ) {
         Date currentTime = Calendar.getInstance().getTime();
         this.dateLocation = currentTime.toString();
         this.addressLocation = addressLocation;
+        this.hours = hours;
         this.bike = bike;
+        this.user = user;
+    }
+
+
+    public Location(  String addressLocation, String hours , int bike, int user ) {
+        Date currentTime = Calendar.getInstance().getTime();
+        this.dateLocation = currentTime.toString();
+        this.addressLocation = addressLocation;
+        this.hours = hours;
+        this.bike_id = bike;
+        this.user_id = user;
     }
 
 
@@ -101,13 +118,13 @@ public class Location {
     }
 
 
-
     @Override
     public String toString() {
         return "Location{" +
                 "id=" + id +
                 ", dateLocation='" + dateLocation + '\'' +
                 ", addressLocation='" + addressLocation + '\'' +
+                ", hours='" + hours + '\'' +
                 ", bike=" + bike +
                 ", user=" + user +
                 '}';

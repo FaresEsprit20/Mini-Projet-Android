@@ -54,7 +54,6 @@
             android:text="Favourites"
             android:textColor="@color/colorTextWhite" />
 
-
     </LinearLayout>
 
     <FrameLayout

@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentOne extends Fragment {
+public class FragmentOne extends Fragment implements BikesAdapter.Callback{
 
     private BikeService apiService;
 
@@ -35,7 +35,6 @@ public class FragmentOne extends Fragment {
     private List<Bike> bikes = new ArrayList<Bike>();
     private  BikesAdapter mAdapter;
     List<Bike> result = new ArrayList<Bike>();
-
 
 
     @Nullable
@@ -53,10 +52,10 @@ public class FragmentOne extends Fragment {
                 LinearLayoutManager.VERTICAL, false));
 
         apiService = RetrofitClient.getClient().create(BikeService.class);
+        mAdapter = new BikesAdapter(getActivity(), (ArrayList<Bike>) bikes);
         fillData();
-
-
-
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setCallback(this);
         return rootView;
     }
 
@@ -74,11 +73,9 @@ public class FragmentOne extends Fragment {
                         bike.setImage(R.drawable.ruebike);
                     }
                     Log.e("Bike LIST", bikes.toString());
-                    mAdapter = new BikesAdapter(getActivity(), (ArrayList<Bike>) bikes);
 
-                    recyclerView.setAdapter(mAdapter);
+                      mAdapter.notifyDataSetChanged();
 
-                    //listView.setAdapter(new UserAdapter(MainActivity.this, R.layout.list_user, list));
                 }
             }
             @Override
@@ -89,13 +86,32 @@ public class FragmentOne extends Fragment {
 
 
         /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
-        bikes.add(new Bike(2,"AAA", "RTT" , "33",   R.drawable.ruebike ));
-        bikes.add(new Bike(3,"BBB", "RUE" , "11",   R.drawable.ruebike ));
-        bikes.add(new Bike(4,"EEE", "SPORT" , "25", R.drawable.ruebike ));
+        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
+        bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
+        bikes.add(new Bike(4,"EEE", "SPORT" , "25",  R.drawable.ruebike ));
         bikes.add(new Bike(5,"CCC", "SPORT" , "77", R.drawable.ruebike ));
         Log.e("USERS LIST", bikes.toString());*/
 
 
-
     }
+
+    @Override
+    public void onItemClicked(Bike bike) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("bike_id",bike.getId());
+        bundle.putString("model", bike.getModel());
+        bundle.putString("type", bike.getType());
+        bundle.putString("price", bike.getPrice());
+        bundle.putInt("image", bike.getImage());
+        DetailsFragment f = new DetailsFragment();
+        f.setArguments(bundle);
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentsContainer, f )
+                .commit();
+    }
+
+
+
+
 }

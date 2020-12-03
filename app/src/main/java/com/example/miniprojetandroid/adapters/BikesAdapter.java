@@ -1,6 +1,7 @@
 package com.example.miniprojetandroid.adapters;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class BikesAdapter  extends RecyclerView.Adapter<BikesAdapter.BikesViewHo
 
     private final ArrayList<Bike> bikes;
     private Context mContext;
+    private Callback mCallback;
 
 public BikesAdapter(Context mContext, ArrayList<Bike> bikes) {
         this.mContext = mContext ;
@@ -41,7 +43,7 @@ final Bike singleItem = bikes.get(position);
         holder.bikeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mCallback.onItemClicked(singleItem);
             }
         });
         holder.BikeImage.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +76,12 @@ public class BikesViewHolder extends RecyclerView.ViewHolder {
 }
 
 
+    public void setCallback(Callback callback) {
+        mCallback = callback;
+    }
+
+    public interface Callback {
+        void onItemClicked(Bike bike);
+    }
 
 }

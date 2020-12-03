@@ -2,6 +2,7 @@ package com.example.miniprojetandroid.ui.activities;
 import com.example.miniprojetandroid.ui.fragments.FragmentOne;
 import com.example.miniprojetandroid.ui.fragments.FragmentThree;
 import com.example.miniprojetandroid.ui.fragments.FragmentTwo;
+import com.example.miniprojetandroid.ui.fragments.DetailsFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.ui.fragments.RentFragment;
 
 public class RentActivity extends AppCompatActivity {
 
@@ -19,9 +21,6 @@ public class RentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rent);
     }
-
-
-
 
     public void showFragment(Fragment fragment){
         getSupportFragmentManager()
@@ -43,5 +42,14 @@ public class RentActivity extends AppCompatActivity {
         showFragment(new FragmentThree());
     }
 
-    
+    public void openFragRent(View view) {
+        showFragment(new RentFragment());
+    }
+
+    public void openDetailsFrag(View view) {
+        showFragment(new DetailsFragment());
+    }
+
+
+
 }
