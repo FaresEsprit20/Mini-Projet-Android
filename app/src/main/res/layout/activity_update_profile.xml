@@ -3,8 +3,8 @@
     tools:context=".ui.activities.UpdateProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3DEE6"
     >
-
 
 
     <LinearLayout
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/lnr1"
             android:layout_margin="20dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="@string/save"
             android:textColor="@color/colorWhite" />
 

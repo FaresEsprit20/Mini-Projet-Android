@@ -51,5 +51,4 @@ public class RentActivity extends AppCompatActivity {
     }
 
 
-
 }

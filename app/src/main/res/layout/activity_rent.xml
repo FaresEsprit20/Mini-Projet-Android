@@ -19,10 +19,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
             android:onClick="openFragOne"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorTextWhite"
-            android:text="Bikes" />
+            android:text="Bikes"
+            android:textColor="@color/colorTextWhite" />
 
         <RelativeLayout
             android:layout_width="2dp"
@@ -33,11 +33,11 @@
             android:id="@+id/btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="openFragTwo"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorTextWhite"
-            android:text="Rents" />
+            android:background="@android:color/holo_green_dark"
+            android:onClick="openFragTwo"
+            android:text="Rents"
+            android:textColor="@color/colorTextWhite" />
 
         <RelativeLayout
             android:layout_width="2dp"
@@ -49,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
             android:onClick="openFragThree"
-            android:background="@color/colorPrimary"
             android:text="Favourites"
             android:textColor="@color/colorTextWhite" />
 
@@ -60,7 +60,7 @@
         android:id="@+id/fragmentsContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="#736B6B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

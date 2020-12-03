@@ -7,6 +7,7 @@ android:layout_height="match_parent"
 android:paddingLeft="20dp"
 android:paddingRight="20dp"
 android:orientation="vertical"
+    android:background="#F3DEE6"
 tools:context=".ui.activities.ContactActivity">
 <EditText
     android:id="@+id/txtTo"
@@ -31,15 +32,16 @@ tools:context=".ui.activities.ContactActivity">
     android:layout_weight="1"
     android:gravity="top"
     android:hint="Message"/>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:text="Send"
-    android:layout_marginBottom="8dp"
-    android:background="@color/colorPrimary"
-    android:layout_marginTop="8dp"
-    android:textColor="@color/colorTextWhite"
-    android:id="@+id/btnSend"/>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Send"
+        android:textColor="@color/colorTextWhite" />
 
 </LinearLayout>

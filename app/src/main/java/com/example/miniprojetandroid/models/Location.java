@@ -26,10 +26,14 @@ public class Location {
     @SerializedName("bike")
     @Expose
     public Bike bike;
-    @SerializedName("user_id")
+    @SerializedName("user")
     @Expose
     public User user;
+    @SerializedName("user_id")
+    @Expose
      public int user_id;
+    @SerializedName("bike_id")
+    @Expose
      public int bike_id;
 
     public Location(){
@@ -38,8 +42,9 @@ public class Location {
 
     public Location(int id, String addressLocation, Bike bike, User user) {
         this.id = id;
-        Date currentTime = Calendar.getInstance().getTime();
-        this.dateLocation = currentTime.toString();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.dateLocation = formatter.format(calendar.getTime());
         this.addressLocation = addressLocation;
         this.bike = bike;
         this.user = user;
@@ -48,16 +53,18 @@ public class Location {
     
     public Location(int id, String addressLocation, Bike bike) {
         this.id = id;
-        Date currentTime = Calendar.getInstance().getTime();
-        this.dateLocation = currentTime.toString();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.dateLocation = formatter.format(calendar.getTime());
         this.addressLocation = addressLocation;
         this.bike = bike;
     }
 
 
     public Location(  String addressLocation, String hours , Bike bike, User user ) {
-        Date currentTime = Calendar.getInstance().getTime();
-        this.dateLocation = currentTime.toString();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.dateLocation = formatter.format(calendar.getTime());
         this.addressLocation = addressLocation;
         this.hours = hours;
         this.bike = bike;
@@ -66,8 +73,9 @@ public class Location {
 
 
     public Location(  String addressLocation, String hours , int bike, int user ) {
-        Date currentTime = Calendar.getInstance().getTime();
-        this.dateLocation = currentTime.toString();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.dateLocation = formatter.format(calendar.getTime());
         this.addressLocation = addressLocation;
         this.hours = hours;
         this.bike_id = bike;

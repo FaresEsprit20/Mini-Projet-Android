@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.Location;
 
 
@@ -18,29 +20,34 @@ public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHo
 
     private final ArrayList<Location> rents;
     private Context mContext;
+    private RentsAdapter.Callback mCallback;
+
 
     public RentsAdapter(Context mContext, ArrayList<Location> rents) {
         this.mContext = mContext ;
         this.rents = rents;
     }
 
+
     @NonNull
     @Override
     public RentsAdapter.RentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View mItemView = LayoutInflater.from(mContext).inflate(R.layout.rent_list_item, parent, false);
-
         return new RentsViewHolder(mItemView, this);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull RentsAdapter.RentsViewHolder holder, int position) {
         final Location singleItem = rents.get(position);
-
-        holder.RentId.setText(String.valueOf(singleItem.getId()));
-
+        holder.RentDate.setText(String.valueOf(singleItem.getDateLocation()));
         holder.RentImage.setBackgroundResource(singleItem.getBike().getImage());
-
+        holder.rentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onItemClicked(singleItem);
+            }
+        });
     }
 
     @Override
@@ -50,16 +57,31 @@ public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHo
 
     public class RentsViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView RentId;
+        public final TextView RentDate;
         public final ImageView RentImage;
+        public final Button rentView;
         final RentsAdapter mAdapter;
+
 
         public RentsViewHolder(@NonNull View itemView, RentsAdapter mAdapter) {
             super(itemView);
-            this.RentId = itemView.findViewById(R.id.rentId);
+            this.RentDate = itemView.findViewById(R.id.rentDate);
             this.RentImage = itemView.findViewById(R.id.rentImage);
+            this.rentView = itemView.findViewById(R.id.btn_view);
             this.mAdapter = mAdapter;
         }
+
+
+    }
+
+
+
+    public void setCallback(RentsAdapter.Callback callback) {
+        mCallback = callback;
+    }
+
+    public interface Callback {
+        void onItemClicked(Location rent);
     }
 
 

@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.miniprojetandroid.R;
 
-public class DetailsFragment extends AppCompatActivity {
+public class MapBoxActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_fragment);
+        setContentView(R.layout.activity_map_box);
     }
 }

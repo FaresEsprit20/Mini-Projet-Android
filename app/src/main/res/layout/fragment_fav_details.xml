@@ -3,49 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.RentFragment">
-
+    android:background="#F3DEE6"
+    tools:context=".ui.fragments.FavDetailsFragment">
 
 
     <LinearLayout
+        android:id="@+id/lnr4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".ui.fragments.RentFragment">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtAdresselocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:hint="Adresse de location"
-            android:textColor="@color/colorPrimary" />
-
-        <EditText
-            android:id="@+id/txtHours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:hint="hours of rent"
-            android:inputType="phone"
-            android:textColor="@color/colorPrimary" />
-
-
-        <Button
-            android:id="@+id/btn_rent"
+        <TextView
+            android:id="@+id/model"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@android:color/holo_green_dark"
-            android:text="Rent"
-            android:textColor="@color/colorTextWhite" />
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textColor="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorPrimary" />
 
 
     </LinearLayout>
-
-
-
 
 
 

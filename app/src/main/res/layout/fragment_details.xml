@@ -5,21 +5,15 @@
     tools:context=".ui.fragments.DetailsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3DEE6"
     >
 
 
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.fragments.DetailsFragment">
-
-
-
-
-
-
 
 
 
@@ -29,13 +23,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/bike_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/model"
@@ -58,8 +45,6 @@
             android:layout_margin="20dp"
             android:textColor="@color/colorPrimary" />
 
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -72,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Rent"
             android:textColor="@color/colorTextWhite" />
 
@@ -88,21 +73,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Add to favourites"
             android:textColor="@color/colorTextWhite" />
 
     </LinearLayout>
-
-
-
-
-
-
-
-
-
-
 
 
 

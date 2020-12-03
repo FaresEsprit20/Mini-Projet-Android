@@ -22,7 +22,7 @@ import com.example.miniprojetandroid.models.User;
 public class DetailsFragment extends Fragment {
 
     Button btnRent, btnFav;
-    TextView lbbike_id,lbmodel,lbtype,lbprice;
+    TextView lbmodel,lbtype,lbprice;
     private SharedPreferences sp;
 
     public static Bike bike;
@@ -47,7 +47,6 @@ public class DetailsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
         btnRent = v.findViewById(R.id.btnRent);
         btnFav = v.findViewById(R.id.btnFav);
-        lbbike_id = v.findViewById(R.id.bike_id);
         lbmodel = v.findViewById(R.id.model);
         lbtype = v.findViewById(R.id.type);
         lbprice = v.findViewById(R.id.price);
@@ -60,7 +59,6 @@ public class DetailsFragment extends Fragment {
          bike = new Bike(id,model,type,price,image);
         Log.e("ddddddddd",bike.toString());
 
-        lbbike_id.setText("ID :       "+bike.getId());
         lbmodel.setText("Model :       "+bike.getModel());
         lbtype.setText("Bike :         "+bike.getType());
         lbprice.setText("Price per hour :         "+bike.getPrice());
@@ -94,10 +92,13 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Added to Favourites!",Toast.LENGTH_SHORT).show();
+                FragmentOne f = new FragmentOne();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentsContainer, f )
+                        .commit();
             }
         });
-
-
 
         return v;
     }

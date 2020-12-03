@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activities.DetailsFragment"></activity>
+        <activity android:name=".ui.activities.MapBoxActivity"></activity>
         <activity android:name=".ui.activities.ContactActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -31,11 +31,9 @@
             android:value="AIzaSyDZS-O_JwLI8pkMp9zNkXJ69O0HMkhMDe8" />
 
         <activity android:name=".ui.activities.UpdateProfile" />
-        <activity android:name=".ui.activities.AddBike" />
         <activity android:name=".ui.activities.FindActivity" />
         <activity android:name=".ui.activities.TrackActivity" />
         <activity android:name=".ui.activities.RentActivity" />
-        <activity android:name=".ui.activities.MainActivityAdmin" />
         <activity android:name=".ui.activities.SignUpActivity" />
         <activity android:name=".ui.activities.SignInActivity">
             <intent-filter>

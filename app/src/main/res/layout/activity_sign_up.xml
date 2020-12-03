@@ -3,6 +3,7 @@
     tools:context=".ui.activities.SignUpActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3DEE6"
     >
 
     <!-- ScrollViews can only have 1 child View, so the 1st LinearLayout below
@@ -22,7 +23,7 @@
             android:layout_margin="20dp"
             android:hint="@string/hint_last_name"
             android:inputType="text"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <EditText
             android:id="@+id/edSignUpFirstName"
@@ -31,7 +32,7 @@
             android:layout_margin="20dp"
             android:hint="@string/hint_first_name"
             android:inputType="text"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <EditText
             android:id="@+id/edSignUpEmail"
@@ -40,7 +41,7 @@
             android:layout_margin="20dp"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <EditText
             android:id="@+id/edSignUpPassword"
@@ -49,7 +50,7 @@
             android:layout_margin="20dp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <EditText
             android:id="@+id/edSignUpPasswordRepeat"
@@ -58,7 +59,7 @@
             android:layout_margin="20dp"
             android:hint="Repeat Password"
             android:inputType="textPassword"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <EditText
             android:id="@+id/edSignUpPhoneNumber"
@@ -67,7 +68,7 @@
             android:layout_margin="20dp"
             android:hint="@string/hint_phone_number"
             android:inputType="phone"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="?android:attr/colorForeground" />
 
         <!--        android:text="Doe"-->
         <!--        android:text="John"-->
@@ -80,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:onClick="doSignUp"
             android:text="@string/btnSignUp"
             android:textColor="@color/colorTextWhite" />

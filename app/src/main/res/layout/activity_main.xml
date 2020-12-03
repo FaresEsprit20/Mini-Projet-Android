@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#736B6B"
     tools:context=".ui.activities.MainActivity">
 
     <LinearLayout
@@ -36,7 +37,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/hint_first_name"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
             <TextView
@@ -46,7 +47,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/hint_last_name"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorTextWhite"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="@string/hint_email"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextWhite"
             android:textSize="16sp" />
 
         <TextView
@@ -67,72 +68,72 @@
             android:layout_margin="5dp"
             android:gravity="end"
             android:text="@string/hint_phone_number"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextWhite"
             android:textSize="16sp" />
 
     </LinearLayout>
 
-    <LinearLayout
 
-        android:layout_width="306dp"
-        android:layout_height="469dp"
+    <LinearLayout
+        android:layout_width="324dp"
+        android:layout_height="332dp"
         android:layout_margin="40dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721">
+        app:layout_constraintVertical_bias="0.741">
 
         <Button
             android:id="@+id/btnLouerClient"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Rent"
             android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btnFindClient"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Find"
             android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btnTrackClient"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Track"
             android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btnContactClient"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Contact"
             android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btnlogoutClient"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/holo_green_dark"
             android:text="Logout"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

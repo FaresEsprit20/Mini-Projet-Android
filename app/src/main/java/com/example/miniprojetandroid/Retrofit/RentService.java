@@ -21,8 +21,9 @@ public interface RentService {
 
 
     // get rents
-    @GET("locations/")
+    @POST("locations/")
     Call<List<Location>> getRents(@Body User user);
+
 
 
     // delete rent

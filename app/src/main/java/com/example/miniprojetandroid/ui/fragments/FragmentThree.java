@@ -1,66 +1,88 @@
 package com.example.miniprojetandroid.ui.fragments;
-
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.miniprojetandroid.R;
+import java.util.ArrayList;
+import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.miniprojetandroid.Retrofit.BikeService;
+import com.example.miniprojetandroid.Retrofit.RetrofitClient;
+import com.example.miniprojetandroid.Retrofit.UserService;
+import com.example.miniprojetandroid.adapters.BikesAdapter;
+import com.example.miniprojetandroid.adapters.FavouritesAdapter;
+import com.example.miniprojetandroid.models.Bike;
+import com.example.miniprojetandroid.models.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentThree#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class FragmentThree extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class FragmentThree extends Fragment implements FavouritesAdapter.Callback{
 
-    public FragmentThree() {
-        // Required empty public constructor
+    private BikeService apiService;
+    private RecyclerView recyclerView;
+    private List<Bike> bikes = new ArrayList<Bike>();
+    private FavouritesAdapter mAdapter;
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_three, container,false);
+        recyclerView = rootView.findViewById(R.id.recycler_favourites);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false));
+        apiService = RetrofitClient.getClient().create(BikeService.class);
+        fillData();
+        mAdapter = new FavouritesAdapter(getActivity(), (ArrayList<Bike>) bikes);
+        mAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setCallback(this);
+        return rootView;
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentThree.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentThree newInstance(String param1, String param2) {
-        FragmentThree fragment = new FragmentThree();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+
+
+    public void fillData(){
+        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
+        /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
+        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
+        bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
+        bikes.add(new Bike(4,"EEE", "SPORT" , "25",  R.drawable.ruebike ));
+        bikes.add(new Bike(5,"CCC", "SPORT" , "77", R.drawable.ruebike ));
+        Log.e("USERS LIST", bikes.toString());*/
     }
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onItemClicked(Bike bike) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("bike_id",bike.getId());
+        bundle.putString("model", bike.getModel());
+        bundle.putString("type", bike.getType());
+        bundle.putString("price", bike.getPrice());
+        bundle.putInt("image", bike.getImage());
+        FavDetailsFragment f = new FavDetailsFragment();
+        f.setArguments(bundle);
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentsContainer, f )
+                .commit();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_three, container, false);
-    }
+
+
+
 }
