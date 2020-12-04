@@ -80,10 +80,13 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
             public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
                 if(response.isSuccessful()  ){
                     locations.addAll(response.body());
-                    for(Location bike: locations){
+                    for(Location rent: locations){
                         Bike b = new Bike();
+                        b.setModel(rent.getModel());
+                        b.setType(rent.getType());
+                        b.setPrice(rent.getPrice());
                         b.setImage(R.drawable.ruebike);
-                        bike.setBike(b);
+                       rent.setBike(b);
                     }
                     Log.e("Bike LIST", locations.toString());
                     mAdapter.notifyDataSetChanged();
@@ -95,13 +98,27 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
             }
         });
 
-
     }
 
 
     @Override
     public void onItemClicked(Location rent) {
-
+        Bundle bundle = new Bundle();
+        bundle.putInt("location_id",rent.getId());
+        bundle.putString("datelocation", rent.getDateLocation() );
+        bundle.putString("adresselocation", rent.getAddressLocation());
+        bundle.putInt("user_id", rent.getUser_id());
+        bundle.putInt("bike_id", rent.getBike_id());
+        bundle.putString("model",rent.getBike().getModel());
+        bundle.putString("type",rent.getBike().getType());
+        bundle.putString("price",rent.getBike().getPrice());
+        bundle.putInt("image", rent.getBike().getImage());
+        RentDetailsFragment f = new RentDetailsFragment();
+        f.setArguments(bundle);
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentsContainer, f )
+                .commit();
     }
 
 

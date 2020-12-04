@@ -52,6 +52,7 @@
             android:layout_height="2dp"
             android:layout_below="@id/contentRent"
             android:background="@color/bg_color" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -92,7 +92,7 @@ public class DetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Added to Favourites!",Toast.LENGTH_SHORT).show();
-                FragmentOne f = new FragmentOne();
+                FragmentThree f = new FragmentThree();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentsContainer, f )

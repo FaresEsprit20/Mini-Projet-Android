@@ -29,6 +29,22 @@ public class Location {
     @SerializedName("user")
     @Expose
     public User user;
+
+    @SerializedName("model")
+    @Expose
+    public String model;
+
+    @SerializedName("type")
+    @Expose
+    public String  type;
+    @SerializedName("price")
+    @Expose
+    public String price;
+    public int getUser_id() {
+        return user_id;
+    }
+
+
     @SerializedName("user_id")
     @Expose
      public int user_id;
@@ -95,10 +111,43 @@ public class Location {
         this.addressLocation = addressLocation;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
     public String getAddressLocation() {
         return addressLocation;
     }
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
+    public int getBike_id() {
+        return bike_id;
+    }
+
+    public void setBike_id(int bike_id) {
+        this.bike_id = bike_id;
+    }
 
 
     public Bike getBike() {
