@@ -59,7 +59,7 @@ public class DetailsFragment extends Fragment {
         String model = getArguments().getString("model");
         String type = getArguments().getString("type");
         String price = getArguments().getString("price");
-        int image = getArguments().getInt("image");
+        String image = getArguments().getString("image");
          bike = new Bike(id,model,type,price,image);
          b = new Bike(model,type,price,image);
         Log.e("ddddddddd",bike.toString());
@@ -82,7 +82,7 @@ public class DetailsFragment extends Fragment {
                 bundle.putString("model", bike.getModel());
                 bundle.putString("type", bike.getType());
                 bundle.putString("price", bike.getPrice());
-                bundle.putInt("image", bike.getImage());
+                bundle.putString("image", bike.getImage());
                 RentFragment f = new RentFragment();
                 f.setArguments(bundle);
                 getActivity().getSupportFragmentManager()

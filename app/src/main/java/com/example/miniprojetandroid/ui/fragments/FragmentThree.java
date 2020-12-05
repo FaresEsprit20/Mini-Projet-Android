@@ -59,7 +59,9 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
 
 
     public void fillData(){
+//       database.bikeDao().deleteAll();;
         bikes = database.bikeDao().getAll();
+        Log.e("favourites",bikes.toString());
         /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
         bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
         bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
@@ -76,7 +78,7 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
         bundle.putString("model", bike.getModel());
         bundle.putString("type", bike.getType());
         bundle.putString("price", bike.getPrice());
-        bundle.putInt("image", bike.getImage());
+        bundle.putString("image", bike.getImage());
         FavDetailsFragment f = new FavDetailsFragment();
         f.setArguments(bundle);
         getActivity().getSupportFragmentManager()

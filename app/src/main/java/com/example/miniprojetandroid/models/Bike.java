@@ -28,8 +28,10 @@ public class Bike {
     @Expose
     @ColumnInfo(name = "price")
     public String price;
+    @SerializedName("image")
+    @Expose
     @ColumnInfo(name = "image")
-    public int image;
+    public String image;
 
 
     @Ignore
@@ -37,13 +39,13 @@ public class Bike {
     }
 
     @Ignore
-    public Bike( String model, int image) {
+    public Bike( String model, String image) {
         this.model = model;
         this.image = image;
     }
 
 
-    public Bike( String model, String type, String price, int image) {
+    public Bike( String model, String type, String price, String image) {
         this.model = model;
         this.type = type;
         this.price = price;
@@ -59,7 +61,7 @@ public class Bike {
     }
 
     @Ignore
-    public Bike(int id, String model, String type, String price,  int image) {
+    public Bike(int id, String model, String type, String price,  String image) {
         this.id = id;
         this.model = model;
         this.type = type;
@@ -91,7 +93,7 @@ public class Bike {
         this.type = type;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -103,7 +105,7 @@ public class Bike {
         return type;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 

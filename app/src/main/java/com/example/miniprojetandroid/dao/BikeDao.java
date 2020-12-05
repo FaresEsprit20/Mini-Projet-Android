@@ -19,6 +19,9 @@ public interface BikeDao {
     @Insert
     void insertOne(Bike bike);
 
+    @Query("DELETE FROM bike_table")
+    public void deleteAll();
+
     @Delete
     void delete(Bike bike);
 

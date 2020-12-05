@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.Location;
+import com.squareup.picasso.Picasso;
 
 
 public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHolder> {
@@ -41,7 +42,7 @@ public class RentsAdapter  extends RecyclerView.Adapter<RentsAdapter.RentsViewHo
     public void onBindViewHolder(@NonNull RentsAdapter.RentsViewHolder holder, int position) {
         final Location singleItem = rents.get(position);
         holder.RentDate.setText(String.valueOf(singleItem.getDateLocation()));
-        holder.RentImage.setBackgroundResource(singleItem.getBike().getImage());
+        Picasso.with(mContext).load("http://10.0.2.2:3000/"+singleItem.getBike().getImage()).resize(80, 80).into(holder.RentImage);
         holder.rentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

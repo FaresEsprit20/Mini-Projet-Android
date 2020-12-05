@@ -85,7 +85,7 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
                         b.setModel(rent.getModel());
                         b.setType(rent.getType());
                         b.setPrice(rent.getPrice());
-                        b.setImage(R.drawable.ruebike);
+                        b.setImage(rent.getImage());
                        rent.setBike(b);
                     }
                     Log.e("Bike LIST", locations.toString());
@@ -112,7 +112,7 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
         bundle.putString("model",rent.getBike().getModel());
         bundle.putString("type",rent.getBike().getType());
         bundle.putString("price",rent.getBike().getPrice());
-        bundle.putInt("image", rent.getBike().getImage());
+        bundle.putString("image", rent.getBike().getImage());
         RentDetailsFragment f = new RentDetailsFragment();
         f.setArguments(bundle);
         getActivity().getSupportFragmentManager()

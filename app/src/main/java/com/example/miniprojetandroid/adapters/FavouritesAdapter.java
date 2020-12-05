@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.database.AppDataBase;
 import com.example.miniprojetandroid.models.Bike;
+import com.squareup.picasso.Picasso;
 
 
 public class FavouritesAdapter  extends RecyclerView.Adapter<FavouritesAdapter.BikesViewHolder> {
@@ -40,8 +41,8 @@ public class FavouritesAdapter  extends RecyclerView.Adapter<FavouritesAdapter.B
         final Bike singleItem = bikes.get(position);
 
         holder.BikeName.setText(singleItem.getModel());
-        holder.BikeImage.setBackgroundResource(singleItem.getImage());
-
+        //holder.BikeImage.setBackgroundResource(singleItem.getImage());
+        Picasso.with(mContext).load("http://10.0.2.2:3000/"+singleItem.getImage()).resize(40, 40).into(holder.BikeImage);
         holder.bikeDelete.setOnClickListener(new View.OnClickListener()
                                              {
                                                  @Override

@@ -72,7 +72,7 @@ public class RentDetailsFragment extends Fragment {
         String price = getArguments().getString("price");
         String datelocation = getArguments().getString("datelocation");
         String adresselocation = getArguments().getString("adresselocation");
-        int image = getArguments().getInt("image");
+        String image = getArguments().getString("image");
         bike = new Bike(bikeid,model,type,price,image);
         user.setId(userid);
         rent = new Location(adresselocation, "22", bike, user);
