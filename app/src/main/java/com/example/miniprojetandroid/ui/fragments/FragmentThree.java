@@ -17,6 +17,7 @@ import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.adapters.BikesAdapter;
 import com.example.miniprojetandroid.adapters.FavouritesAdapter;
+import com.example.miniprojetandroid.database.AppDataBase;
 import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.User;
 import retrofit2.Call;
@@ -31,6 +32,7 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
     private RecyclerView recyclerView;
     private List<Bike> bikes = new ArrayList<Bike>();
     private FavouritesAdapter mAdapter;
+    private AppDataBase database;
 
 
     @Nullable
@@ -38,6 +40,7 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_three, container,false);
+        database = AppDataBase.getAppDatabase(getActivity().getApplicationContext());
         recyclerView = rootView.findViewById(R.id.recycler_favourites);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(true);
@@ -56,7 +59,7 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
 
 
     public void fillData(){
-        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
+        bikes = database.bikeDao().getAll();
         /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
         bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
         bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
@@ -81,6 +84,10 @@ public class FragmentThree extends Fragment implements FavouritesAdapter.Callbac
                 .replace(R.id.fragmentsContainer, f )
                 .commit();
     }
+
+
+
+
 
 
 

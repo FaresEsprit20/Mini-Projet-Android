@@ -1,35 +1,47 @@
 package com.example.miniprojetandroid.models;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "bike_table")
 public class Bike {
 
     @SerializedName("bike_id")
     @Expose
+    @PrimaryKey(autoGenerate = true)
     public int id;
     @SerializedName("model")
     @Expose
+    @ColumnInfo(name = "model")
     public String model;
     @SerializedName("type")
     @Expose
+    @ColumnInfo(name = "type")
     public String  type;
     @SerializedName("price")
     @Expose
+    @ColumnInfo(name = "price")
     public String price;
-
+    @ColumnInfo(name = "image")
     public int image;
 
 
+    @Ignore
     public Bike(){
     }
 
-
+    @Ignore
     public Bike( String model, int image) {
         this.model = model;
         this.image = image;
     }
+
 
     public Bike( String model, String type, String price, int image) {
         this.model = model;
@@ -38,6 +50,7 @@ public class Bike {
         this.image = image;
     }
 
+    @Ignore
     public Bike(int id, String model, String price, String type) {
         this.id = id;
         this.model = model;
@@ -45,6 +58,7 @@ public class Bike {
         this.type = type;
     }
 
+    @Ignore
     public Bike(int id, String model, String type, String price,  int image) {
         this.id = id;
         this.model = model;

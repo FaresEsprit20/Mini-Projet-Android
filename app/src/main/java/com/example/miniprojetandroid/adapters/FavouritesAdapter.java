@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.database.AppDataBase;
 import com.example.miniprojetandroid.models.Bike;
 
 
@@ -40,6 +41,18 @@ public class FavouritesAdapter  extends RecyclerView.Adapter<FavouritesAdapter.B
 
         holder.BikeName.setText(singleItem.getModel());
         holder.BikeImage.setBackgroundResource(singleItem.getImage());
+
+        holder.bikeDelete.setOnClickListener(new View.OnClickListener()
+                                             {
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     AppDataBase.getAppDatabase(mContext).bikeDao().delete(singleItem);
+                                                     Toast.makeText(mContext,"Favourite deleted successfully !",Toast.LENGTH_SHORT).show();
+                                                 }
+                                             }
+
+        );
+
         holder.bikeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +76,7 @@ public class FavouritesAdapter  extends RecyclerView.Adapter<FavouritesAdapter.B
 
         public final TextView BikeName;
         public final ImageView BikeImage;
-        public final Button bikeView;
+        public final Button bikeView,bikeDelete;
         final FavouritesAdapter mAdapter;
 
         public BikesViewHolder(@NonNull View itemView, FavouritesAdapter mAdapter) {
@@ -71,6 +84,7 @@ public class FavouritesAdapter  extends RecyclerView.Adapter<FavouritesAdapter.B
             this.BikeName = itemView.findViewById(R.id.bikeName);
             this.BikeImage = itemView.findViewById(R.id.bikeImage);
             this.bikeView = itemView.findViewById(R.id.btn_view);
+            this.bikeDelete = itemView.findViewById(R.id.deleteFav);
             this.mAdapter = mAdapter;
         }
     }

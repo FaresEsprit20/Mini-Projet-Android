@@ -3,9 +3,7 @@ package com.example.miniprojetandroid.ui.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.database.AppDataBase;
 import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.User;
 
@@ -23,9 +22,13 @@ public class DetailsFragment extends Fragment {
 
     Button btnRent, btnFav;
     TextView lbmodel,lbtype,lbprice;
+
+    private AppDataBase database ;
+
     private SharedPreferences sp;
 
     public static Bike bike;
+    public static Bike b;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -45,6 +48,7 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_details, container, false);
+        database = AppDataBase.getAppDatabase(getActivity().getApplicationContext());
         btnRent = v.findViewById(R.id.btnRent);
         btnFav = v.findViewById(R.id.btnFav);
         lbmodel = v.findViewById(R.id.model);
@@ -57,6 +61,7 @@ public class DetailsFragment extends Fragment {
         String price = getArguments().getString("price");
         int image = getArguments().getInt("image");
          bike = new Bike(id,model,type,price,image);
+         b = new Bike(model,type,price,image);
         Log.e("ddddddddd",bike.toString());
 
         lbmodel.setText("Model :       "+bike.getModel());
@@ -91,6 +96,7 @@ public class DetailsFragment extends Fragment {
         btnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               database.bikeDao().insertOne(b);
                 Toast.makeText(getActivity(),"Added to Favourites!",Toast.LENGTH_SHORT).show();
                 FragmentThree f = new FragmentThree();
                 getActivity().getSupportFragmentManager()
