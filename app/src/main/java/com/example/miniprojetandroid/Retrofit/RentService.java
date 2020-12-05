@@ -27,7 +27,7 @@ public interface RentService {
 
 
     // delete rent
-    @DELETE("locations/delete")
+    @POST("locations/delete")
     Call<ResponseBody> deleteRent(
             @Body Location location );
 

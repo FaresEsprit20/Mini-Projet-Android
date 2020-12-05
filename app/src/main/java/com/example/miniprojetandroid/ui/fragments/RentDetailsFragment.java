@@ -9,23 +9,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.miniprojetandroid.R;
+import com.example.miniprojetandroid.Retrofit.RentService;
+import com.example.miniprojetandroid.Retrofit.RetrofitClient;
+import com.example.miniprojetandroid.Retrofit.TrackService;
 import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.Location;
 import com.example.miniprojetandroid.models.User;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class RentDetailsFragment extends Fragment {
 
+    private RentService apiService;
     Button btnDelete;
     TextView txtDatelocation, txtAdresselocation, txtHours, txtTotalprice, txtBikemodel,txtBiketype,txtBikeprice;
 
     public RentDetailsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,12 +47,12 @@ public class RentDetailsFragment extends Fragment {
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rent_details, container, false);
         // Inflate the layout for this fragment
+        apiService = RetrofitClient.getClient().create(RentService.class);
            btnDelete = v.findViewById(R.id.btnDelete);
            txtDatelocation = v.findViewById(R.id.datelocation);
            txtAdresselocation = v.findViewById(R.id.adresselocation);
@@ -50,7 +62,7 @@ public class RentDetailsFragment extends Fragment {
 
            Bike bike;
            User user = new User();
-        Location rent;
+        final Location rent;
         int id = getArguments().getInt("location_id");
         int userid = getArguments().getInt("user_id");
         int bikeid = getArguments().getInt("bike_id");
@@ -65,6 +77,7 @@ public class RentDetailsFragment extends Fragment {
         user.setId(userid);
         rent = new Location(adresselocation, "22", bike, user);
         rent.setDateLocation(datelocation);
+        rent.setId(id);
 
         Log.e("ddddddddd",bike.toString());
 
@@ -74,6 +87,41 @@ public class RentDetailsFragment extends Fragment {
         txtBiketype.setText("Bike Type :          "+rent.getBike().getType());
         txtBikeprice.setText("Bike price per hour:   "+rent.getBike().getPrice()+"  DT");
 
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getActivity(),"Deleted Rent !",Toast.LENGTH_SHORT).show();
+                Call<ResponseBody> call = apiService.deleteRent(rent);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        String message = null;
+                        try {
+                            message = response.body().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        if(response.isSuccessful()  ){
+                            //  Toast.makeText(getActivity(),"Deleted Record !",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("ERROR: ", t.getMessage());
+                    }
+                });
+
+                FragmentTwo f = new FragmentTwo();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentsContainer, f)
+                        .commit();
+            }
+        });
 
         return v;
     }
