@@ -12,8 +12,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.models.Bike;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 
 public class BikesAdapter  extends RecyclerView.Adapter<BikesAdapter.BikesViewHolder> {
@@ -39,7 +44,9 @@ public void onBindViewHolder(@NonNull BikesAdapter.BikesViewHolder holder, int p
 final Bike singleItem = bikes.get(position);
 
         holder.BikeName.setText(singleItem.getModel());
-        holder.BikeImage.setBackgroundResource(singleItem.getImage());
+
+    Picasso.with(mContext).load("http://10.0.2.2:3000/"+singleItem.getImage()).resize(50, 50).into(holder.BikeImage);
+
         holder.bikeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

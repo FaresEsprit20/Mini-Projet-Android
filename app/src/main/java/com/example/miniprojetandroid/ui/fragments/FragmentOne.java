@@ -21,7 +21,9 @@ import com.example.miniprojetandroid.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+import com.squareup.picasso.*;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 public class FragmentOne extends Fragment implements BikesAdapter.Callback{
 
@@ -59,8 +61,8 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
             public void onResponse(Call<List<Bike>> call, Response<List<Bike>> response) {
                 if(response.isSuccessful()){
                     bikes.addAll(response.body());
-                    for(Bike bike: bikes){
-                        bike.setImage(R.drawable.ruebike);
+                    for(Bike b : bikes){
+                        Log.e("Bike LIST", String.valueOf(b.getImage()));
                     }
                     Log.e("Bike LIST", bikes.toString());
                       mAdapter.notifyDataSetChanged();
@@ -89,7 +91,7 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
         bundle.putString("model", bike.getModel());
         bundle.putString("type", bike.getType());
         bundle.putString("price", bike.getPrice());
-        bundle.putInt("image", bike.getImage());
+        bundle.putString("image", bike.getImage());
         DetailsFragment f = new DetailsFragment();
         f.setArguments(bundle);
         getActivity().getSupportFragmentManager()

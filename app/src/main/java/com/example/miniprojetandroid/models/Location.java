@@ -51,6 +51,9 @@ public class Location {
     @SerializedName("bike_id")
     @Expose
      public int bike_id;
+    @SerializedName("image")
+    @Expose
+    public String image;
 
     public Location(){
 
@@ -98,6 +101,14 @@ public class Location {
         this.user_id = user;
     }
 
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;

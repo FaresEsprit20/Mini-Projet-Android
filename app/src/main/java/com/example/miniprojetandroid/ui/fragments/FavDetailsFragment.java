@@ -51,7 +51,7 @@ public class FavDetailsFragment extends Fragment {
         String model = getArguments().getString("model");
         String type = getArguments().getString("type");
         String price = getArguments().getString("price");
-        int image = getArguments().getInt("image");
+        String image = getArguments().getString("image");
         bike = new Bike(id,model,type,price,image);
         Log.e("ddddddddd",bike.toString());
 

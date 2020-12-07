@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
     public static final String TAG_NUMBER = "NUMBER";
     Button LogoutClient;
-    Button FindClient, LouerClient, TrackClient, Contact;
+    Button FindClient, LouerClient, TrackClient, Contact, MapBox;
     private SharedPreferences sp;
 
     public static User currentUser;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         txtLastName = findViewById(R.id.txtMainLastName);
         txtEmail = findViewById(R.id.txtMainEmail);
         txtPhoneNumber = findViewById(R.id.txtMainPhoneNumber);
+        MapBox = findViewById(R.id.MapBox);
         checkAndFillData(getIntent());
 
         sp = getSharedPreferences("com.example.miniprojetandroid.shared", MODE_PRIVATE);
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onFind();
+            }
+        });
+        MapBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onMapBox();
             }
         });
 
@@ -76,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
                 onLogout();
             }
         });
+    }
+
+
+    private void onMapBox() {
+        Intent intent = new Intent(this, MapBoxActivity.class);
+        startActivity(intent);
     }
 
 

@@ -23,4 +23,7 @@
     <string name="save">Save</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="accessToken">sk.eyJ1IjoibWluaWJ5Y2ljYWxsIiwiYSI6ImNraWRzN2JuNDAzNWkycXF1b3N4dDd1NDMifQ.xado5ZcGdNNLLLl48fHFTA</string>
+
+
 </resources>
