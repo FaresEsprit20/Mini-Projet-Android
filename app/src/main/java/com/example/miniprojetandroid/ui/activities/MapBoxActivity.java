@@ -1,12 +1,25 @@
 package com.example.miniprojetandroid.ui.activities;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.example.miniprojetandroid.R;
-import com.example.miniprojetandroid.models.Bike;
+import com.example.miniprojetandroid.Retrofit.MapService;
+import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.models.BikeCyclist;
 import com.example.miniprojetandroid.models.Circuit;
 import com.example.miniprojetandroid.models.Community;
@@ -30,6 +43,10 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
@@ -37,7 +54,8 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 
 public class MapBoxActivity extends AppCompatActivity {
 
-    private MapView mapView;
+    private  MapView mapView;
+    private  MapService apiService;
     private  ArrayList<Shop> shops = new ArrayList<Shop>();
     private  ArrayList<BikeCyclist> cyclists = new ArrayList<BikeCyclist>();
     private  ArrayList<Community> communities = new ArrayList<Community>();
@@ -47,6 +65,7 @@ public class MapBoxActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        apiService = RetrofitClient.getClient().create(MapService.class);
 
 // Mapbox access token is configured here. This needs to be called either in your application
 // object or in the same activity which contains the mapview.
@@ -61,9 +80,14 @@ public class MapBoxActivity extends AppCompatActivity {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
 
+                fillDataShops();
+                fillDataCircuits();
+                fillDataCommunities();
+                fillDataCyclists();
+
 
                 //static markers and positions
-                Shop shop1 = new Shop("bike shop 1",36.553015,10.592774);
+               /* Shop shop1 = new Shop("bike shop 1",36.553015,10.592774);
                 Shop shop2 = new Shop("bike shop 2",35.499414,10.824846);
                 Shop shop3 = new Shop("bike shop 3",35.945377,9.451555);
                 shops.add(shop1);
@@ -87,7 +111,8 @@ public class MapBoxActivity extends AppCompatActivity {
                 Circuit c3 = new Circuit("Circuit 3", 36.574341, 8.429827);
                 circuits.add(c1);
                 circuits.add(c2);
-                circuits.add(c3);
+                circuits.add(c3);*/
+
 
                 List<MarkerOptions> shopsOptions = new ArrayList<>();
                 List<MarkerOptions> communitiesOptions = new ArrayList<>();
@@ -110,7 +135,8 @@ public class MapBoxActivity extends AppCompatActivity {
                 for(Circuit s : circuits){
                     circuitsOptions.add(new MarkerOptions().position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
                 }
-
+                Log.e("Community LIST", communities.toString());
+                Log.e("Community OPTIONS", communitiesOptions.toString());
                 mapboxMap.addMarkers(shopsOptions);
                 mapboxMap.addMarkers(cyclistsOptions);
                 mapboxMap.addMarkers(communitiesOptions);
@@ -172,4 +198,106 @@ public class MapBoxActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
+
+
+
+    public void fillDataShops(){
+
+        Call<List<Shop>> call = apiService.getShops();
+        call.enqueue(new Callback<List<Shop>>() {
+            @Override
+            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                if(response.isSuccessful()){
+                    shops.addAll(response.body());
+                    Log.e("SHOP LIST", shops.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
+            }
+        });
+
+    }
+
+    public void fillDataCircuits(){
+
+        Call<List<Circuit>> call = apiService.getCircuits();
+        call.enqueue(new Callback<List<Circuit>>() {
+            @Override
+            public void onResponse(Call<List<Circuit>> call, Response<List<Circuit>> response) {
+                if(response.isSuccessful()){
+                    circuits.addAll(response.body());
+                    Log.e("Circuit LIST", circuits.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Circuit>> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
+            }
+        });
+
+    }
+
+    public void fillDataCommunities(){
+
+        Call<List<Community>> call = apiService.getCommunities();
+        call.enqueue(new Callback<List<Community>>() {
+            @Override
+            public void onResponse(Call<List<Community>> call, Response<List<Community>> response) {
+                if(response.isSuccessful()){
+                    communities.addAll(response.body());
+                    Log.e("Community LIST", communities.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Community>> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
+            }
+        });
+
+    }
+
+    public void fillDataCyclists(){
+
+        Call<List<BikeCyclist>> call = apiService.getCyclists();
+        call.enqueue(new Callback<List<BikeCyclist>>() {
+            @Override
+            public void onResponse(Call<List<BikeCyclist>> call, Response<List<BikeCyclist>> response) {
+                if(response.isSuccessful()){
+                    cyclists.addAll(response.body());
+                    Log.e("Cyclist LIST", cyclists.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<BikeCyclist>> call, Throwable t) {
+                Log.e("ERROR: ", t.getMessage());
+            }
+        });
+
+    }
+
+
+    public static Icon drawableToIcon(@NonNull Context context, @DrawableRes int id) {
+        Drawable vectorDrawable = ResourcesCompat.getDrawable(context.getResources(), id, context.getTheme());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        vectorDrawable.draw(canvas);
+        return IconFactory.getInstance(context).fromBitmap(bitmap);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
