@@ -16,7 +16,7 @@ public interface MapService {
 
 
     // get shops
-    @GET("bikes/")
+    @GET("shops/")
     Call<List<Shop>> getShops();
 
     // get communities

@@ -18,6 +18,7 @@ public class Circuit {
     @Expose
     public double longitude;
 
+
     public Circuit(){
 
     }
@@ -53,6 +54,7 @@ public class Circuit {
     }
 
 
+
     @Override
     public String toString() {
         return "Circuit{" +
@@ -62,7 +64,6 @@ public class Circuit {
                 ", longitude=" + longitude +
                 '}';
     }
-
 
 
 
