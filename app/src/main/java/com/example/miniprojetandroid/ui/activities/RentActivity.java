@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.ui.fragments.RentFragment;
+import com.example.miniprojetandroid.ui.fragments.ShopsFragment;
 
 public class RentActivity extends AppCompatActivity {
 
@@ -36,6 +37,11 @@ public class RentActivity extends AppCompatActivity {
     public void openFragTwo(View view) {
 
         showFragment(new FragmentTwo());
+    }
+
+    public void openFragShops(View view) {
+
+        showFragment(new ShopsFragment());
     }
 
     public void openFragThree(View view) {

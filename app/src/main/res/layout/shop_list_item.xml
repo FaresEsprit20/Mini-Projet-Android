@@ -38,7 +38,6 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_baseline_view_24" />
 
-
         </LinearLayout>
 
         <RelativeLayout

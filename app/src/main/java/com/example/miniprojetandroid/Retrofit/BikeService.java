@@ -1,6 +1,7 @@
 package com.example.miniprojetandroid.Retrofit;
 
 import com.example.miniprojetandroid.models.Bike;
+import com.example.miniprojetandroid.models.Shop;
 import com.example.miniprojetandroid.models.User;
 import java.util.List;
 import okhttp3.ResponseBody;
@@ -17,6 +18,9 @@ public interface BikeService {
     @GET("bikes/")
     Call<List<Bike>> getBikes();
 
+    // get bikes by shop
+    @POST("bikes/shops")
+    Call<List<Bike>> getBikesByShop(@Body Shop shop);
 
 
 }

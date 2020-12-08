@@ -8,16 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.miniprojetandroid.R;
 import com.example.miniprojetandroid.models.Bike;
 import com.example.miniprojetandroid.models.Shop;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
+
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder>{
 
@@ -51,7 +49,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     }
 
 
-
     @Override
     public int getItemCount() {
         return shops.size();
@@ -80,12 +77,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     public interface Callback {
         void onItemClicked(Shop bike);
     }
-
-
-
-
-
-
 
 
 

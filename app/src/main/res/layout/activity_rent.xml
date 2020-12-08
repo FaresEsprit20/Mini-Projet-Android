@@ -15,13 +15,13 @@
 
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/btn8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/holo_green_dark"
-            android:onClick="openFragOne"
-            android:text="Bikes"
+            android:onClick="openFragShops"
+            android:text="Shops"
             android:textColor="@color/colorTextWhite" />
 
         <RelativeLayout
