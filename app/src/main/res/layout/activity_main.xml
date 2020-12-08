@@ -14,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:padding="20dp"
+        android:background="#736B6B"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
@@ -98,21 +99,12 @@
             android:textColor="@color/colorWhite" />
 
         <Button
-            android:id="@+id/btnFindClient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/holo_green_dark"
-            android:text="Find"
-            android:textColor="@color/colorWhite" />
-
-        <Button
             android:id="@+id/MapBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/holo_green_dark"
-            android:text="MapBox"
+            android:text="Find"
             android:textColor="@color/colorWhite" />
 
 

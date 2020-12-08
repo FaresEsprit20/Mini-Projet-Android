@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
     public static final String TAG_NUMBER = "NUMBER";
     Button LogoutClient;
-    Button FindClient, LouerClient, TrackClient, Contact, MapBox;
+    Button  LouerClient, TrackClient, Contact, MapBox;
     private SharedPreferences sp;
 
     public static User currentUser;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LogoutClient = findViewById(R.id.btnlogoutClient);
-        FindClient = findViewById(R.id.btnFindClient);
+
         TrackClient = findViewById(R.id.btnTrackClient);
         LouerClient = findViewById(R.id.btnLouerClient);
         Contact = findViewById(R.id.btnContactClient);
@@ -43,12 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         sp = getSharedPreferences("com.example.miniprojetandroid.shared", MODE_PRIVATE);
 
-        FindClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onFind();
-            }
-        });
+
         MapBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,11 +86,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void onFind() {
-        Intent intent = new Intent(this, FindActivity.class);
-        startActivity(intent);
-    }
 
     public void onLouer() {
         Intent intent = new Intent(this, RentActivity.class);

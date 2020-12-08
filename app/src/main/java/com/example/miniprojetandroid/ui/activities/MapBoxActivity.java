@@ -66,7 +66,10 @@ public class MapBoxActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         apiService = RetrofitClient.getClient().create(MapService.class);
-
+        fillDataShops();
+        fillDataCircuits();
+        fillDataCommunities();
+        fillDataCyclists();
 // Mapbox access token is configured here. This needs to be called either in your application
 // object or in the same activity which contains the mapview.
         Mapbox.getInstance(this, getString(R.string.accessToken));
@@ -80,10 +83,7 @@ public class MapBoxActivity extends AppCompatActivity {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
 
-                fillDataShops();
-                fillDataCircuits();
-                fillDataCommunities();
-                fillDataCyclists();
+
 
 
                 //static markers and positions
@@ -161,6 +161,9 @@ public class MapBoxActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         mapView.onResume();
+
+
+
     }
 
     @Override
