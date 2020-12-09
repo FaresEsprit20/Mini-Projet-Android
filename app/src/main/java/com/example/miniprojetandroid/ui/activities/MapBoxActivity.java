@@ -123,17 +123,25 @@ public class MapBoxActivity extends AppCompatActivity {
                 for(Shop s : shops){
                     shopsOptions.add(new MarkerOptions().position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
                 }
-
+                IconFactory iconFactory = IconFactory.getInstance(MapBoxActivity.this);
+                Icon blueicon = iconFactory.fromResource(R.drawable.blue_marker);
+                blueicon = IconFactory.recreate(blueicon.getId(), Bitmap.createScaledBitmap(blueicon.getBitmap(), 90, 90, false));
                 for(Community s : communities){
-                    communitiesOptions.add(new MarkerOptions().position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
+                    communitiesOptions.add(new MarkerOptions().icon(blueicon).position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
                 }
 
+                IconFactory iconYellowFactory = IconFactory.getInstance(MapBoxActivity.this);
+                Icon yellowicon = iconFactory.fromResource(R.drawable.yellow_marker);
+                yellowicon = IconFactory.recreate(yellowicon.getId(), Bitmap.createScaledBitmap(yellowicon.getBitmap(), 90, 90, false));
                 for(BikeCyclist s : cyclists){
-                    cyclistsOptions.add(new MarkerOptions().position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
+                    cyclistsOptions.add(new MarkerOptions().icon(yellowicon).position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
                 }
 
+                IconFactory iconDarkFactory = IconFactory.getInstance(MapBoxActivity.this);
+                Icon darkicon = iconFactory.fromResource(R.drawable.dark_marker);
+                darkicon = IconFactory.recreate(darkicon.getId(), Bitmap.createScaledBitmap(darkicon.getBitmap(), 90, 90, false));
                 for(Circuit s : circuits){
-                    circuitsOptions.add(new MarkerOptions().position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
+                    circuitsOptions.add(new MarkerOptions().icon(darkicon).position(new LatLng(s.getLatitude(),s.getLongitude())).setTitle(s.getTitle()) );
                 }
                 Log.e("Community LIST", communities.toString());
                 Log.e("Community OPTIONS", communitiesOptions.toString());
