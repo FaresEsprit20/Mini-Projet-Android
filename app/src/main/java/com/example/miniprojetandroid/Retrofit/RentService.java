@@ -16,7 +16,7 @@ public interface RentService {
 
 
     //add a rent
-    @POST("locations/add")
+    @POST("location/add")
     Call<ResponseBody> addRent(@Body Location location);
 
 

@@ -106,6 +106,17 @@ public class Location {
         this.user = user;
     }
 
+    public Location(String addressLocation, String hours , String total, int bike, int user ) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        this.dateLocation = formatter.format(calendar.getTime());
+        this.addressLocation = addressLocation;
+        this.totalprice = total;
+        this.hours = hours;
+        this.bike_id = bike;
+        this.user_id = user;
+    }
+
 
     public Location(  String addressLocation, String hours , int bike, int user ) {
         Calendar calendar = Calendar.getInstance();

@@ -24,6 +24,7 @@ import com.example.miniprojetandroid.models.Location;
 import com.example.miniprojetandroid.models.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -90,8 +91,10 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
                         b.setPrice(rent.getPrice());
                         b.setImage(rent.getImage());
                        rent.setBike(b);
+
                     }
                     Log.e("Bike LIST", locations.toString());
+
                     mAdapter.notifyDataSetChanged();
                 }
             }
