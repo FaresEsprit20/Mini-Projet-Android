@@ -17,6 +17,8 @@ import com.example.miniprojetandroid.Retrofit.RetrofitClient;
 import com.example.miniprojetandroid.Retrofit.UserService;
 import com.example.miniprojetandroid.adapters.BikesAdapter;
 import com.example.miniprojetandroid.models.Bike;
+import com.example.miniprojetandroid.models.Location;
+import com.example.miniprojetandroid.models.Shop;
 import com.example.miniprojetandroid.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +34,7 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
     private List<Bike> bikes = new ArrayList<Bike>();
     private  BikesAdapter mAdapter;
     List<Bike> result = new ArrayList<Bike>();
+    private Shop shop;
 
     @Nullable
     @Override
@@ -44,6 +47,11 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false));
         apiService = RetrofitClient.getClient().create(BikeService.class);
+        int shopid = getArguments().getInt("shop_id");
+        double latitude = getArguments().getDouble("latitude");
+        double longitude = getArguments().getDouble("longitude");
+        String title = getArguments().getString("title");
+        this.shop = new Shop(shopid,title,latitude,longitude);
         mAdapter = new BikesAdapter(getActivity(), (ArrayList<Bike>) bikes);
         fillData();
         recyclerView.setAdapter(mAdapter);
@@ -54,14 +62,18 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
 
 
     public void fillData(){
+        Log.e("SHop ID", String.valueOf(shop.getId()));
 
-        Call<List<Bike>> call = apiService.getBikes();
+        Call<List<Bike>> call = apiService.getBikesByShop(this.shop);
         call.enqueue(new Callback<List<Bike>>() {
             @Override
             public void onResponse(Call<List<Bike>> call, Response<List<Bike>> response) {
                 if(response.isSuccessful()){
                     bikes.addAll(response.body());
                     for(Bike b : bikes){
+                        if(b.id == 0){
+                        bikes.clear();
+                        }
                         Log.e("Bike LIST", String.valueOf(b.getImage()));
                     }
                     Log.e("Bike LIST", bikes.toString());
@@ -74,30 +86,27 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
             }
         });
 
-        /*bikes.add(new Bike(1,"ECO", "RTT" , "44", R.drawable.ruebike ));
-        bikes.add(new Bike(2,"AAA", "RTT" , "33",  R.drawable.ruebike ));
-        bikes.add(new Bike(3,"BBB", "RUE" , "11",  R.drawable.ruebike ));
-        bikes.add(new Bike(4,"EEE", "SPORT" , "25",  R.drawable.ruebike ));
-        bikes.add(new Bike(5,"CCC", "SPORT" , "77", R.drawable.ruebike ));
-        Log.e("USERS LIST", bikes.toString());*/
 
     }
 
 
     @Override
     public void onItemClicked(Bike bike) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("bike_id",bike.getId());
-        bundle.putString("model", bike.getModel());
-        bundle.putString("type", bike.getType());
-        bundle.putString("price", bike.getPrice());
-        bundle.putString("image", bike.getImage());
-        DetailsFragment f = new DetailsFragment();
-        f.setArguments(bundle);
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentsContainer, f )
-                .commit();
+        if (bikes.size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("bike_id", bike.getId());
+            bundle.putString("model", bike.getModel());
+            bundle.putString("type", bike.getType());
+            bundle.putString("price", bike.getPrice());
+            bundle.putString("image", bike.getImage());
+            bundle.putInt("shop_id", bike.getShop());
+            DetailsFragment f = new DetailsFragment();
+            f.setArguments(bundle);
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentsContainer, f)
+                    .commit();
+        }
     }
 
 

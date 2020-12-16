@@ -65,7 +65,7 @@ public class DetailsFragment extends Fragment {
         Log.e("ddddddddd",bike.toString());
 
         lbmodel.setText("Model :       "+bike.getModel());
-        lbtype.setText("Bike :         "+bike.getType());
+        lbtype.setText("Bike Type:         "+bike.getType());
         lbprice.setText("Price per hour :         "+bike.getPrice());
 
         btnRent.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +83,7 @@ public class DetailsFragment extends Fragment {
                 bundle.putString("type", bike.getType());
                 bundle.putString("price", bike.getPrice());
                 bundle.putString("image", bike.getImage());
+                bundle.putInt("shop_id", bike.getShop());
                 RentFragment f = new RentFragment();
                 f.setArguments(bundle);
                 getActivity().getSupportFragmentManager()

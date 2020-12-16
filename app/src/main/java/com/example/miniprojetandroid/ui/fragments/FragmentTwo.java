@@ -81,6 +81,9 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
                 if(response.isSuccessful()  ){
                     locations.addAll(response.body());
                     for(Location rent: locations){
+                        if(rent.id == 0) {
+                            locations.clear();
+                        }
                         Bike b = new Bike();
                         b.setModel(rent.getModel());
                         b.setType(rent.getType());
@@ -103,22 +106,27 @@ public class FragmentTwo extends Fragment implements RentsAdapter.Callback{
 
     @Override
     public void onItemClicked(Location rent) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("location_id",rent.getId());
-        bundle.putString("datelocation", rent.getDateLocation() );
-        bundle.putString("adresselocation", rent.getAddressLocation());
-        bundle.putInt("user_id", rent.getUser_id());
-        bundle.putInt("bike_id", rent.getBike_id());
-        bundle.putString("model",rent.getBike().getModel());
-        bundle.putString("type",rent.getBike().getType());
-        bundle.putString("price",rent.getBike().getPrice());
-        bundle.putString("image", rent.getBike().getImage());
-        RentDetailsFragment f = new RentDetailsFragment();
-        f.setArguments(bundle);
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentsContainer, f )
-                .commit();
+        if (locations.size() >0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("location_id", rent.getId());
+            bundle.putString("datelocation", rent.getDateLocation());
+            bundle.putString("adresselocation", rent.getAddressLocation());
+            bundle.putString("totalprice", rent.getTotalprice());
+            bundle.putInt("user_id", rent.getUser_id());
+            bundle.putInt("bike_id", rent.getBike_id());
+            bundle.putString("model", rent.getBike().getModel());
+            bundle.putString("type", rent.getBike().getType());
+            bundle.putString("price", rent.getBike().getPrice());
+            bundle.putString("title", rent.getTitle());
+            bundle.putInt("shop_id", rent.getId());
+            bundle.putString("image", rent.getBike().getImage());
+            RentDetailsFragment f = new RentDetailsFragment();
+            f.setArguments(bundle);
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentsContainer, f)
+                    .commit();
+        }
     }
 
 

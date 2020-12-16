@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -24,6 +25,8 @@ import com.example.miniprojetandroid.models.BikeCyclist;
 import com.example.miniprojetandroid.models.Circuit;
 import com.example.miniprojetandroid.models.Community;
 import com.example.miniprojetandroid.models.Shop;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
@@ -32,6 +35,9 @@ import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.location.LocationComponent;
+import com.mapbox.mapboxsdk.location.modes.CameraMode;
+import com.mapbox.mapboxsdk.location.modes.RenderMode;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -60,7 +66,8 @@ public class MapBoxActivity extends AppCompatActivity {
     private  ArrayList<BikeCyclist> cyclists = new ArrayList<BikeCyclist>();
     private  ArrayList<Community> communities = new ArrayList<Community>();
     private  ArrayList<Circuit> circuits = new ArrayList<Circuit>();
-
+    private MapboxMap mbMap;
+    PermissionsManager permissionsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,12 +163,59 @@ public class MapBoxActivity extends AppCompatActivity {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         // Map is set up and the style has loaded. Now you can add data or make other map adjustments
+
+                        //enableLocationComponent(style);
+
                     }
                 });
 
             }
         });
     }
+
+
+
+
+
+
+    @SuppressWarnings( {"MissingPermission"})
+    private void enableLocationComponent(@NonNull Style loadedMapStyle) {
+        if (PermissionsManager.areLocationPermissionsGranted(MapBoxActivity.this)) {
+            LocationComponent locationComponent = mbMap.getLocationComponent();
+            locationComponent.activateLocationComponent(MapBoxActivity.this, loadedMapStyle);
+            locationComponent.setLocationComponentEnabled(true);
+            locationComponent.setCameraMode(CameraMode.TRACKING);
+            locationComponent.setRenderMode(RenderMode.COMPASS);
+        } else {
+            permissionsManager = new PermissionsManager(new PermissionsListener() {
+                @Override
+                public void onExplanationNeeded(List<String> permissionsToExplain) {
+                    Toast.makeText(MapBoxActivity.this, "location not enabled", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onPermissionResult(boolean granted) {
+                    if (granted) {
+                        mbMap.getStyle(new Style.OnStyleLoaded() {
+                            @Override
+                            public void onStyleLoaded(@NonNull Style style) {
+                              //  initMapStuff(style);
+                            }
+                        });
+                    } else {
+                        Toast.makeText(MapBoxActivity.this, "Location services not allowed", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            permissionsManager.requestLocationPermissions(MapBoxActivity.this);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 
 
 
@@ -298,13 +352,6 @@ public class MapBoxActivity extends AppCompatActivity {
         vectorDrawable.draw(canvas);
         return IconFactory.getInstance(context).fromBitmap(bitmap);
     }
-
-
-
-
-
-
-
 
 
 

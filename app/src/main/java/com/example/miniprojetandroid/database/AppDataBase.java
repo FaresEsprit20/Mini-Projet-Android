@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import com.example.miniprojetandroid.dao.BikeDao;
 import com.example.miniprojetandroid.models.Bike;
 
-@Database(entities = {Bike.class}, version = 2, exportSchema = false)
+@Database(entities = {Bike.class}, version = 3, exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static AppDataBase instance;

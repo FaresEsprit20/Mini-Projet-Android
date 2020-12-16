@@ -32,7 +32,10 @@ public class Bike {
     @Expose
     @ColumnInfo(name = "image")
     public String image;
-
+    @SerializedName("shop_id")
+    @Expose
+    @ColumnInfo(name = "shop_id")
+    public int shop;
 
     @Ignore
     public Bike(){
@@ -81,6 +84,14 @@ public class Bike {
         return id;
     }
 
+    public int getShop() {
+        return shop;
+    }
+
+    public void setShop(int shop) {
+        this.shop = shop;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -116,9 +127,8 @@ public class Bike {
                 ", model='" + model + '\'' +
                 ", type='" + type + '\'' +
                 ", price='" + price + '\'' +
-                ", image=" + image +
+                ", image='" + image + '\'' +
+                ", shop='" + shop + '\'' +
                 '}';
     }
-
-
 }

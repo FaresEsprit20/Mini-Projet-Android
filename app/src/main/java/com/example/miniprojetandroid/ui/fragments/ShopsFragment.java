@@ -103,6 +103,7 @@ public class ShopsFragment extends Fragment implements ShopAdapter.Callback{
 
         Bundle bundle = new Bundle();
         bundle.putInt("shop_id",shop.getId());
+        Log.e("SHop ID", String.valueOf(shop.getId()));
         bundle.putString("title", shop.getTitle());
         bundle.putDouble("latitude", shop.getLatitude());
         bundle.putDouble("longitude", shop.getLongitude());

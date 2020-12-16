@@ -29,6 +29,13 @@ public class Shop {
         this.longitude = longitude;
     }
 
+    public Shop(int id , String title, double latitude, double longitude) {
+        this.id = id;
+        this.title = title;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public int getId() {
         return id;
     }

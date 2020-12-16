@@ -33,7 +33,7 @@ public class RentDetailsFragment extends Fragment {
 
     private RentService apiService;
     Button btnDelete;
-    TextView txtDatelocation, txtAdresselocation, txtHours, txtTotalprice, txtBikemodel,txtBiketype,txtBikeprice;
+    TextView txtDatelocation, txtAdresselocation, txtHours, txtTotalprice, BikeShop , txtBikemodel,txtBiketype,txtBikeprice;
 
     public RentDetailsFragment() {
         // Required empty public constructor
@@ -59,7 +59,9 @@ public class RentDetailsFragment extends Fragment {
            txtBikemodel = v.findViewById(R.id.bikemodel);
            txtBiketype = v.findViewById(R.id.biketype);
            txtBikeprice = v.findViewById(R.id.bikeprice);
-
+           txtHours = v.findViewById(R.id.hours);
+           txtTotalprice = v.findViewById(R.id.pricetotal);
+           BikeShop = v.findViewById(R.id.bikeshop);
            Bike bike;
            User user = new User();
         final Location rent;
@@ -70,9 +72,11 @@ public class RentDetailsFragment extends Fragment {
         String type = getArguments().getString("type");
         Log.e("type",type);
         String price = getArguments().getString("price");
+        String totalprice = getArguments().getString("totalprice");
         String datelocation = getArguments().getString("datelocation");
         String adresselocation = getArguments().getString("adresselocation");
         String image = getArguments().getString("image");
+        String title = getArguments().getString("title");
         bike = new Bike(bikeid,model,type,price,image);
         user.setId(userid);
         rent = new Location(adresselocation, "22", bike, user);
@@ -83,10 +87,12 @@ public class RentDetailsFragment extends Fragment {
 
         txtDatelocation.setText("Date de Location :       "+rent.getDateLocation());
         txtAdresselocation.setText("Adresse de Location :       "+rent.getAddressLocation());
+        txtHours.setText("Total Hours:   "+rent.getHours());
+        txtTotalprice.setText(" Total Price  :"+totalprice);
         txtBikemodel.setText("Bike Model :     "+rent.getBike().getModel());
         txtBiketype.setText("Bike Type :          "+rent.getBike().getType());
         txtBikeprice.setText("Bike price per hour:   "+rent.getBike().getPrice()+"  DT");
-
+        BikeShop.setText("SHOP :        "+title);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

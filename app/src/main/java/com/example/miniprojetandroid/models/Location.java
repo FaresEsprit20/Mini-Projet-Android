@@ -40,11 +40,20 @@ public class Location {
     @SerializedName("price")
     @Expose
     public String price;
+    @SerializedName("shop_id")
+    @Expose
+    public int shop;
+    @SerializedName("totalprice")
+    @Expose
+    public String totalprice;
+
     public int getUser_id() {
         return user_id;
     }
 
-
+    @SerializedName("title")
+    @Expose
+    public String title;
     @SerializedName("user_id")
     @Expose
      public int user_id;
@@ -79,8 +88,15 @@ public class Location {
         this.bike = bike;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
-    public Location(  String addressLocation, String hours , Bike bike, User user ) {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Location(String addressLocation, String hours , Bike bike, User user ) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         this.dateLocation = formatter.format(calendar.getTime());
@@ -120,6 +136,30 @@ public class Location {
 
     public void setAddressLocation(String addressLocation) {
         this.addressLocation = addressLocation;
+    }
+
+    public String getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(String totalprice) {
+        this.totalprice = totalprice;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
+    public int getShop() {
+        return shop;
+    }
+
+    public void setShop(int shop) {
+        this.shop = shop;
     }
 
     public String getModel() {
@@ -195,6 +235,19 @@ public class Location {
                 ", hours='" + hours + '\'' +
                 ", bike=" + bike +
                 ", user=" + user +
+                ", model='" + model + '\'' +
+                ", type='" + type + '\'' +
+                ", price='" + price + '\'' +
+                ", shop=" + shop +
+                ", totalprice='" + totalprice + '\'' +
+                ", title='" + title + '\'' +
+                ", user_id=" + user_id +
+                ", bike_id=" + bike_id +
+                ", image='" + image + '\'' +
                 '}';
     }
+
+
+
+
 }
