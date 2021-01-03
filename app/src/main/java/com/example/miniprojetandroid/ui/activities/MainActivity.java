@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
     public static final String TAG_NUMBER = "NUMBER";
     Button LogoutClient;
-    Button  LouerClient, TrackClient, Contact, MapBox;
+    Button  LouerClient, TrackClient, Contact, MapBox, AddEvent , EventList;
     private SharedPreferences sp;
 
     public static User currentUser;
@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LogoutClient = findViewById(R.id.btnlogoutClient);
-
         TrackClient = findViewById(R.id.btnTrackClient);
         LouerClient = findViewById(R.id.btnLouerClient);
         Contact = findViewById(R.id.btnContactClient);
@@ -39,15 +38,30 @@ public class MainActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtMainEmail);
         txtPhoneNumber = findViewById(R.id.txtMainPhoneNumber);
         MapBox = findViewById(R.id.MapBox);
+        AddEvent = findViewById(R.id.AddEvent);
+        EventList = findViewById(R.id.EventList);
         checkAndFillData(getIntent());
 
         sp = getSharedPreferences("com.example.miniprojetandroid.shared", MODE_PRIVATE);
-
 
         MapBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onMapBox();
+            }
+        });
+
+        AddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAddEvent();
+            }
+        });
+
+        EventList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             onList();
             }
         });
 
@@ -57,21 +71,18 @@ public class MainActivity extends AppCompatActivity {
                 onTrack();
             }
         });
-
         LouerClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLouer();
             }
         });
-
         Contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onContact();
             }
         });
-
         LogoutClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void onList(){
+    Intent intent = new Intent(this, EventActivity.class);
+    startActivity(intent);
+    }
 
     private void onMapBox() {
         Intent intent = new Intent(this, MapBoxActivity.class);
@@ -93,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToUpdateProfile(View view) {
-
-
         Intent intent = new Intent(this, UpdateProfile.class);
         intent.putExtra(SignInActivity.FNAME_KEY, txtFirstName.getText().toString());
         intent.putExtra(SignInActivity.LNAME_KEY, txtLastName.getText().toString());
@@ -111,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onContact() {
         Intent intent = new Intent(this, ContactActivity.class);
+        startActivity(intent);
+    }
+
+    public void onAddEvent() {
+        Intent intent = new Intent(this, AddEventActivity.class);
         startActivity(intent);
     }
 
