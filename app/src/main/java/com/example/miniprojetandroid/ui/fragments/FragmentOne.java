@@ -27,6 +27,7 @@ import com.squareup.picasso.*;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+
 public class FragmentOne extends Fragment implements BikesAdapter.Callback{
 
     private BikeService apiService;
@@ -63,7 +64,6 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
 
     public void fillData(){
         Log.e("SHop ID", String.valueOf(shop.getId()));
-
         Call<List<Bike>> call = apiService.getBikesByShop(this.shop);
         call.enqueue(new Callback<List<Bike>>() {
             @Override
@@ -85,8 +85,6 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
                 Log.e("ERROR: ", t.getMessage());
             }
         });
-
-
     }
 
 
@@ -108,6 +106,7 @@ public class FragmentOne extends Fragment implements BikesAdapter.Callback{
                     .commit();
         }
     }
+
 
 
 
